@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-may-2016 15:38:59 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="entities.ResponsableEmpresa" table="responsableEmpresa" catalog="pruebaFct" optimistic-lock="version">
+        <id name="idUsuario" type="int">
+            <column name="idUsuario" />
+            <generator class="foreign">
+                <param name="property">usuario</param>
+            </generator>
+        </id>
+        <many-to-one name="empresa" class="entities.Empresa" fetch="select">
+            <column name="idEmpresa" not-null="true" />
+        </many-to-one>
+        <one-to-one name="usuario" class="entities.Usuario" constrained="true"></one-to-one>
+        <set name="tutors" table="tutor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idResponsable" not-null="true" />
+            </key>
+            <one-to-many class="entities.Tutor" />
+        </set>
+    </class>
+</hibernate-mapping>
