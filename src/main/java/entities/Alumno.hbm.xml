@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-may-2016 15:38:59 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="entities.Alumno" table="alumno" catalog="pruebaFct" optimistic-lock="version">
+        <id name="idUsuario" type="int">
+            <column name="idUsuario" />
+            <generator class="foreign">
+                <param name="property">usuario</param>
+            </generator>
+        </id>
+        <many-to-one name="centro" class="entities.Centro" fetch="select">
+            <column name="idCentroAlumno" not-null="true" />
+        </many-to-one>
+        <many-to-one name="especializacion" class="entities.Especializacion" fetch="select">
+            <column name="idEspecializacion" not-null="true" />
+        </many-to-one>
+        <many-to-one name="familiaProfesional" class="entities.FamiliaProfesional" fetch="select">
+            <column name="idFamiliaProfesional" not-null="true" />
+        </many-to-one>
+        <many-to-one name="grado" class="entities.Grado" fetch="select">
+            <column name="idGrado" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tutor" class="entities.Tutor" fetch="select">
+            <column name="idTutor" not-null="true" />
+        </many-to-one>
+        <one-to-one name="usuario" class="entities.Usuario" constrained="true"></one-to-one>
+        <property name="expediente" type="java.lang.Integer">
+            <column name="expediente" />
+        </property>
+    </class>
+</hibernate-mapping>

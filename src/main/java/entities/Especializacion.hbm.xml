@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-may-2016 15:38:59 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="entities.Especializacion" table="especializacion" catalog="pruebaFct" optimistic-lock="version">
+        <id name="idEspecializacion" type="java.lang.Integer">
+            <column name="idEspecializacion" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <set name="alumnos" table="alumno" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idEspecializacion" not-null="true" />
+            </key>
+            <one-to-many class="entities.Alumno" />
+        </set>
+        <set name="grados" table="relacionGE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idEspecializacion" not-null="true" />
+            </key>
+            <many-to-many entity-name="entities.Grado">
+                <column name="idGrado" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
