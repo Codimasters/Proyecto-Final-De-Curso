@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <style type="text/css">
     <%@include file="./Bootstrap/css/bootstrap.min.css"%>
-    <%@include file="./css/css.css"%>
 </style>
 <title>Registrese Weyy</title>
 </head>
@@ -23,7 +22,7 @@
 			    		<center><h3 class="panel-title">Formulario de registro de tutores<small><br>siempre responsables</small></h3><center>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form id="formRegistro" role="form" method="post" action="validarRegistro.jsp">
+			    		<form id="formRegistro" role="form" method="post" action=".././validarRegistro.jsp">
 			    			<div class="row">
 			    				<div class="col-xs-4 col-sm-4 col-md-4">
 			    					<div class="form-group">
@@ -62,11 +61,11 @@
 			                			<select name='idEmpresa' id='idEmpresa' onchange="obtenerDatos(this.value)">
 			                				<option value="0">Seleccione una empresa</option>
 			    							<%
-			    							Conexion conexion= new Conexion();
-						    				Statement st= conexion.conectar().createStatement();
+			    						/*	Conexion conexion= new Conexion();
+						    				Statement st= conexion.conectar().createStatement();*/
 						    				int idEmpresa;
 											String nombre;
-											ResultSet rs=st.executeQuery("select idEmpresa, nombre from empresa");
+											/*ResultSet*/ rs=st.executeQuery("select idEmpresa, nombre from empresa");
 			    							while(rs.next()){
 			    								idEmpresa= rs.getInt(1);
 			    								nombre= rs.getString(2);

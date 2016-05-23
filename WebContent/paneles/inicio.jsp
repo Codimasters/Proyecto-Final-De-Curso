@@ -8,109 +8,164 @@
 	<meta charset="utf-8">
 	<!--Importacion de diferentes archivos necesarios para la utilizacion de bootstrap, css y bootstrap validator -->
 	<link href=".././Bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script src="../.././Bootstrap/js/bootstrap.js"></script>
+	<link href=".././css/navs/admin.css" rel="stylesheet">
+	<link href=".././css/inicio.css" rel="stylesheet">
 	<title>Portada</title>
+	<link rel='shortcut icon' type='image/x-icon' href='.././favicon.ico' />
+	<link rel="stylesheet" href=".././css/jquery.fullpage.min.css">
+    <link rel="stylesheet" href=".././css/jquery.fullpage.min.css">
 </head>
 <body>
-<!-- Menu de navegacion-->
-	<nav  class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse" >
-				<span class="sr-only">Menú de navegación</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a href="index.html" class="navbar-brand">WikiWars</a>
-		</div>
-		<div id="navbarCollapse" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-<!-- Lista del menu de navegación con todo el contenido de la pagina-->
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#personajes">Personajes <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="personajes.html#obi">Obi Wan</a></li>
-						<li><a href="personajes.html#quigon">Qui Gon Jinn</a></li>
-						<li><a href='personajes.html#yoda'>Yoda</a></li>
-					</ul>
-				</li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#planetas">Planetas <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="planetas.html#alderaan">Alderaan</a></li>
-						<li><a href="planetas.html#tatooine">Tatooine</a></li>
-						<li><a href='planetas.html#coruscant'>coruscant</a></li>
-					</ul>
-				</li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#naves">Naves <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="naves.html#cuervo">Cuervo Oxidado</a></li>
-						<li><a href="naves.html#eclipse">Eclipse</a></li>
-						<li><a href='naves.html#tie'>TIE</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</nav>
 
-	<!--Cabecera del documento -->
-	<header>
-		<figure>
-	<!-- Imagen de la cabecera-->
-			<img src="recursos/fotos/rsz_1rsz_headerstarwars.gif" class="img-responsive"></img>
-		</figure>
-	</header>
-	<!--Div que engloba todo el contenido de la página para aplicarle un background-->
-	<div class='fondo'>
-		<section >
-		<!--Primer articulo con la introduccion-->
-			<article class='row'>
-				<div class="col-md-6 col-md-offset-3 section contenedor">
-					<h1 class='fuente'>Bienvenido a WikiWars!!</h1>
-					<p class='fuente'>Hola, esta página web, con temática de <span><cite>Star Wars</cite></span> está diseñada por Alejandro Oses Armentas, un alumno del grado superior "<span><cite>Desarrollo de aplicaciones web</cite></span>". </p>
-					<p class='fuente'>En esta página, nos encontraremos con información acerca de diferentes <span><strong>naves, planetas y personajes</strong></span> que salen en las películas o los videojuegos.</p>
-					<p class='fuente'> A continuacion se mostrará un <span><strong>trailer</strong></span> de una de las películas.</p>
-		<!--Video de youtube-->
-					<figure>
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/sGbxmsDFVnE" frameborder="0" allowfullscreen></iframe>
-					</figure>
-				</div>
 
-			</article>
-		</section>
+<!--                                                             NAV VERTICAL                                                                      -->
+<nav id="menu" class="navbar navbar-default sidebar navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>      
+    </div>
+    <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#inicio">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+        <li class="dropdown">
+          <a href="#inicio" class="dropdown-toggle" data-toggle="dropdown">Gestionar Usuarios <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
+          <ul class="dropdown-menu forAnimate" role="menu">
+            
+            
+            <li class="dropdown-submenu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu">|Crear Usuarios| <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a>
+          <ul class="dropdown-menu forAnimate" role="menu">
+			<!--                                    MENU DE CREAR USUARIOS (INSERTAR LINKS FULLPAGE )                          -->
+            <li><a href="#crearUsuario">&#183<u>Crear profs./alumns.</u></a></li>
+            <li><a href="#crearTutor">&#183<u>Crear tutores</u></a>
+        
+          </ul></li>
+            <li class="divider"></li>
+			<!--                                    MENU DE MODIFICAR USUARIOS (INSERTAR LINKS FULLPAGE )                       -->
+            <li><a href="#modificarUsuario">|Modificar usuarios|<span></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pencil"></span></a></li>
+            <li class="divider"></li>
 
-		<section>
-			<article class='row formulario'>
-		<!--Formulario para enviar un correo a la web-->
-				<form class="col-md-6 col-md-offset-3 contenedor" role="form" id="formulario" data-toggle="validator">
-					<h1 class="fuente">Contacto</h1>
-					<div class="form-group">
-						<label class="control-label fuente">Nombre</label>
-						<input type="text" class="form-control" name="nombre" placeholder="Nombre">
-					</div>
-					<div class="form-group">
-						<label class="control-label fuente">Email</label>
-						<input type="email" class="form-control" name="email" placeholder="Email">
-					</div>
-					<div class="form-group">
-						<label class="control-label fuente">Asunto</label>
-						<input type="text" class="form-control" name="asunto" placeholder="Asunto">
-					</div>
+           
+          </ul></li>
+          
+          <li class="dropdown" id="centros">
+         	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestionar Centros <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-education"></span></a>
+       	  <ul class="dropdown-menu forAnimate" role="menu">
+            <li><a href="#crearCentro">Crea</a></li>
+            <li><a href="#modificarCentro">Modifica</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Informes</a></li>
+          </ul>
+          </li> 
+          
+          <li class="dropdown" id="gestionarEmpresa">
+         	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestionar Empresas <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plane"></span></a>
+       	  <ul class="dropdown-menu forAnimate" role="menu">
+            <li><a href="#crearEmpresa">Crea</a></li>
+            <li><a href="#modificarEmpresa">Modifica</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+          </ul>
+          </li> 
+        <ul class="nav navbar-nav navbar-bottom">          
+        <li ><a href="#">Ajustes<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a></li>        
+        <li ><a href="#">Cerrar Sesi&oacuten<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-off"></span></a></li>
+      	</ul>
+      </ul>
+      
+      
+    </div>
+  </div>
+</nav>
 
-					<div class="form-group">
-						<label class="control-label fuente">Mensaje</label>
-						<textarea class="form-control"rows="3" name="mensaje"></textarea>
-					</div>
-					<div class="row">
-						<button type="submit" class="btn btn-default col-md-6 col-md-offset-3">Enviar</button>
-					</div>
-				</form>
-			</article>
-		</section>
-		<footer class ="row contenedor2">
-			<div class="col-md-3 col-md-offset-5">
-				<small class="fuente">Powered by <a href="http://getbootstrap.com/">Bootstrap</a> Diseñado por Alejandro Oses Armentas</small>
-			</div>
-		</footer>
+<!--                                                             SERVICIOS                                                                      -->
+<section id="fullpage">
+<div class="container">
+	
+       
+                <div class="section" id="section0">
+                <h1 class="text-center">SERVICIOS QUE OFRECE NUESTRA PLATAFORMA</h1>
+                    <div class="box">
+                    
+                        <div class="box-content">
+                        	
+                            <h2 class="tag-title">DISE&NtildeO RESPONSIVE</h2>
+                            <hr />
+                            <p>
+                            Disfruta del dise&ntildeo responsive de la aplicaci&oacuten, deja que nosotros hagamos lo duro por ti, navega sin quebraderos de cabeza.
+                            </p>
+                            <br />
+                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section" id="section1">
+                <h1><center>REGISTRAR NUEVO ALUMNO/PROFESOR</center></h1>
+                    <!--<div class="box">
+                        <div class="box-content">
+                            <h1 class="tag-title">BUENA GESTI&OacuteN</h1>
+                            <hr />
+                            <p>Disfruta de una buena gesti&oacuten sobre la informaci&oacuten que nos facilitas. <br>&#161Nosotros nos encargamos de que no se pierda nada por el camino!</p>
+                            <br />
+                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
+                        </div>
+                    </div>-->
+                 <%@include file=".././registro.jsp" %>
+                </div>
+                
+                <div class="section" id="section2">
+                <h1><center>REGISTRAR NUEVO TUTOR</center></h1>
+                    <!--<div class="box">
+                        <div class="box-content">
+                            <h1 class="tag-title">BUENA GESTI&OacuteN</h1>
+                            <hr />
+                            <p>Disfruta de una buena gesti&oacuten sobre la informaci&oacuten que nos facilitas. <br>&#161Nosotros nos encargamos de que no se pierda nada por el camino!</p>
+                            <br />
+                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
+                        </div>
+                    </div>-->
+                 <%@include file=".././registroTutor.jsp" %>
+                </div>
+                
+                <div class="section" id="section3">
+                <h1><center>EDITAR USUARIOS</center></h1>
+                 <%@include file=".././modificarUsuario.jsp" %>
+                </div>
+                
+                
+            </div>           
+        </div>
 	</div>
+</div>
+</section>
+    
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="../.././Bootstrap/js/bootstrap.js"></script>
+<script src=".././js/jquery.min.js"></script>
+        <script src=".././js/jquery-ui-min.js"></script>
+        <script src=".././js/jquery.fullpage.min.js"></script>
+        <script src=".././js/jquery.slimscroll.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#fullpage').fullpage({
+                    anchors: ['inicio','crearUsuario','crearTutor', 'modificarUsuario'],
+                    menu: '#menu',
+                    loopTop: true,
+                    loopBottom: true,
+                    slidesNavigation: true,
+                    scrollOverflow: true
+                });
+            });
+</script>
 </html>

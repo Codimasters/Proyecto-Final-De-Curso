@@ -3,7 +3,6 @@
 <meta charset="UTF-8">
 <style type="text/css">
     <%@include file="./Bootstrap/css/bootstrap.min.css"%>
-    <%@include file="./css/css.css"%>
 </style>
 <title>Iniciar Sesi&oacuten</title>
 </head>
@@ -11,7 +10,7 @@
 <body>
 <div class="container" style="margin-top:30px">
 
-<div class="col-md-12"><hr>
+<div class="col-md-12">
     <div class="modal-dialog" style="margin-bottom:0">
         <div class="modal-content">
                     <div class="panel-heading">
@@ -26,7 +25,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Contrase&ntilde;a" name="password" type="password" value="">
                                 </div>
-                                <input type="submit" class="btn btn-sm btn-success">Inicia Sesi&oacuten</input>
+                                <center><input type="submit" class="btn btn-sm btn-success" value="Inicia Sesion"></input></center>
                             </fieldset>
                         </form>
                     </div>

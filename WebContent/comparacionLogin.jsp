@@ -11,15 +11,12 @@ String password = (String)request.getParameter("password");
 Usuario comprobacion= OperacionesBd.login(nombre,password);
 
 
-System.out.println(comprobacion.getIdUsuario());
+//System.out.println(comprobacion.getIdUsuario());
 
 if (comprobacion.getIdUsuario()!=null){
 	session.setAttribute("usuario", comprobacion);
-	out.println(comprobacion.getAlumno().getCentro().getNombreCentro());
-	
+	out.println("<h1>"+comprobacion.getResponsableEmpresa().getIdUsuario()+"</h1>");
 			//out.println(url.url.redirigir("usuario.jsp"));
-	
-
 }
 else{
 	out.println("<script>alert('Se ha equivocado de contraseña o no está registrado')</script>");
