@@ -10,14 +10,21 @@ String nombre = (String)request.getParameter("nombreusuario");
 String password = (String)request.getParameter("password");
 Usuario comprobacion= OperacionesBd.login(nombre,password);
 
+session.setAttribute("sesion", comprobacion);
+
 
 //System.out.println(comprobacion.getIdUsuario());
 
 if (comprobacion.getIdUsuario()!=null){
 	session.setAttribute("usuario", comprobacion);
-	out.println("<h1>"+comprobacion.getResponsableEmpresa().getIdUsuario()+"</h1>");
 			//out.println(url.url.redirigir("usuario.jsp"));
+	if (comprobacion.getTipoUsuario().getIdTipoUsuario() == 5){
+		System.out.println(comprobacion.getIdUsuario());
+		out.println(url.url.redirigir("./paneles/inicio.jsp"));
+		
+	}
 }
+
 else{
 	out.println("<script>alert('Se ha equivocado de contraseña o no está registrado')</script>");
 	out.println(url.url.redirigir("index.jsp"));

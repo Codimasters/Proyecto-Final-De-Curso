@@ -19,88 +19,67 @@
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
         		<div class="panel-heading">
-			    		<center><h3 class="panel-title">Formulario de registro de tutores<small><br>siempre responsables</small></h3><center>
+			    		<center><h3 class="panel-title">Registro <small>de empresas</small></h3><center>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form id="formRegistro" role="form" method="post" action=".././validarRegistro.jsp">
+			    		<form id="formRegistro" role="form" method="post" action="./validarRegistro.jsp">
 			    			<div class="row">
-			    				<div class="col-xs-4 col-sm-4 col-md-4">
+			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
-			                <input type="text" name="nombre" id="nombre" class="form-control input-sm floatlabel" placeholder="nombre">
+			                <input type="text" name="nombre" id="nombre" class="form-control input-sm floatlabel" placeholder="Nombre de la empresa">
 			    					</div>
 			    				</div>
-			    				<div class="col-xs-4 col-sm-4 col-md-4">
+			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
-			    						<input type="text" name="apellido1" id="apellido1" class="form-control input-sm" placeholder="apellido1">
+			    						<input type="text" name="acronimo" id="acronimo" class="form-control input-sm" placeholder="Acrónimo de la empresa">
 			    					</div>
 			    				</div>
-			    				<div class="col-xs-4 col-sm-4 col-md-4">
+			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
-			    						<input type="text" name="apellido2" id="apellido2" class="form-control input-sm" placeholder="apellido2">
+			    						<input type="text" name="rubro" id="rubro" class="form-control input-sm" placeholder="Rubro de la empresa">
 			    					</div>
 			    				</div>
 			    			</div>
 			    			<div class="form-group">
-			    				<input type="dni" name="dni" id="dni" class="form-control input-sm" placeholder="Inserta el DNI">
+			    				<input type="text" name="direccionFiscal" id="direccionFiscal" class="form-control input-sm" placeholder="Direccion Fiscal de la empresa">
 			    			</div>
 
 			    			<div class="form-group">
-			    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+			    				<input type="text" name="region" id="region" class="form-control input-sm" placeholder="Region de la empresa">
 			    			</div>
 			    			
 			    			<div class="row">
 			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
-			                			<input type="text" name="telefono" id="telefono" class="form-control input-sm floatlabel" placeholder="Telefono">
-			    					</div>
-			    				</div>
-			    			</div>
-			    			<div class="row">
-			    				<div class="col-xs-12 col-sm-12 col-md-12">
-			    					<div class="form-group">
-			                			<select name='idEmpresa' id='idEmpresa' onchange="obtenerDatos(this.value)">
-			                				<option value="0">Seleccione una empresa</option>
-			    							<%
-			    						/*	Conexion conexion= new Conexion();
-						    				Statement st= conexion.conectar().createStatement();*/
-						    				int idEmpresa;
-											String nombre;
-											/*ResultSet*/ rs=st.executeQuery("select idEmpresa, nombre from empresa");
-			    							while(rs.next()){
-			    								idEmpresa= rs.getInt(1);
-			    								nombre= rs.getString(2);
-			    								out.println("<option value='"+idEmpresa+"'>"+nombre+"</option>");
-			    							}
-			    							%>
-			    						</select>
-			    					</div>
-			    				</div>
-			    			</div>	
-	
-			    			<div class="row">
-			    				<div class="col-xs-12 col-sm-12 col-md-12">
-			    					<div class="form-group">
-			                			<input type="text" name="username" id="username" class="form-control input-sm floatlabel" placeholder="nombre de usuario">
-			    					</div>
-			    				</div>
-			    			</div>
-			
-			    			<div class="row">
-			    				<div class="col-xs-6 col-sm-6 col-md-6">
-			    					<div class="form-group">
-			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
-			    					</div>
-			    				</div>
-			    				<div class="col-xs-6 col-sm-6 col-md-6">
-			    					<div class="form-group">
-			    						<select id="tipoRegistro" name='tipoRegistro' onchange='obtenerTipoRegistro(this.value)' hidden>
-			    							<option value="4">alumno</option>
-			    						</select>
+			                			<input type="text" name="ciudad" id="ciudad" class="form-control input-sm floatlabel" placeholder="Ciudad de la empresa">
 			    					</div>
 			    				</div>
 			    			</div>
 			    			
-			    			<input type="submit" value="Registrar Usuario" class="btn btn-info btn-block">
+			    			<div class="row">
+			    				<div class="col-xs-12 col-sm-12 col-md-12">
+			    					<div class="form-group">
+			                			<input type="text" name="telefono" id="telefono" class="form-control input-sm floatlabel" placeholder="Telefono de la empresa">
+			    					</div>
+			    				</div>
+			    			</div>
+			    			
+			    				<div id="datosConsultasFamiliaProfesional"></div>
+			    				<div id="datosConsultasGrado"></div>
+			    				<div id="datosConsultasEspecializacion"></div>
+			    				<div id="materiasProfesor"></div>
+									
+
+			    				
+			    			<div class="row">
+			    				<div class="col-xs-12 col-sm-12 col-md-12">
+			    					<div class="form-group">
+			                			<input type="email" name="email" id="email" class="form-control input-sm floatlabel" placeholder="E-mail de la empresa">
+			    					</div>
+			    				</div>
+			    			</div>
+			    			
+			    			<input type="submit" value="Crear Empresa" class="btn btn-info btn-block" disabled>
 			    		
 			    		</form>
 			    	</div>
@@ -109,7 +88,7 @@
     	</div>
     </div>
     
-    <script>/*
+    <script>
 function obtenerDatos(str) {
     if (str == "") {
         document.getElementById("centro").innerHTML = "";
@@ -128,7 +107,7 @@ function obtenerDatos(str) {
             }
         };
         
-        xmlhttp.open("GET","obtenerDatosRegistroFamiliaProfesionalAjax.jsp?q="+str,true);
+        xmlhttp.open("GET",".././obtenerDatosRegistroFamiliaProfesionalAjax.jsp?q="+str,true);
         xmlhttp.send();
     }
     if(document.getElementById("familiaProfesional")){
@@ -161,7 +140,7 @@ function obtenerDatosFamiliaProfesional(str) {
             }
         };
         
-        xmlhttp.open("GET","obtenerDatosRegistroGradoAjax.jsp?q="+str,true);
+        xmlhttp.open("GET",".././obtenerDatosRegistroGradoAjax.jsp?q="+str,true);
         xmlhttp.send();
     }
     if(document.getElementById("grado")){
@@ -191,7 +170,7 @@ function obtenerDatosGrado(str) {
             }
         };
         
-        xmlhttp.open("GET","obtenerDatosRegistroEspecializacionAjax.jsp?q="+str,true);
+        xmlhttp.open("GET",".././obtenerDatosRegistroEspecializacionAjax.jsp?q="+str,true);
         xmlhttp.send();
     }
     
@@ -209,7 +188,7 @@ function obtenerTipoRegistro(str) {
 			break;
 	}
     
-}*/
+}
 
 
 

@@ -1,5 +1,6 @@
 
-
+<%@ page import="entities.*" %>
+<% Usuario usuario = (Usuario)session.getAttribute("sesion");%>
 <%@ page language="java" import="packageConexion.*" %>
 <%@ page language="java" import="panel.Admin.*" %>
 <!doctype html>
@@ -38,16 +39,16 @@
             
             
             <li class="dropdown-submenu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu">|Crear Usuarios| <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu">|Crear| <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a>
           <ul class="dropdown-menu forAnimate" role="menu">
 			<!--                                    MENU DE CREAR USUARIOS (INSERTAR LINKS FULLPAGE )                          -->
-            <li><a href="#crearUsuario">&#183<u>Crear profs./alumns.</u></a></li>
-            <li><a href="#crearTutor">&#183<u>Crear tutores</u></a>
+            <li><a href="#crearUsuario">&#183<u>Profesores/Alumnos</u></a></li>
+            <li><a href="#crearTutor">&#183<u>Tutores</u></a>
         
           </ul></li>
             <li class="divider"></li>
 			<!--                                    MENU DE MODIFICAR USUARIOS (INSERTAR LINKS FULLPAGE )                       -->
-            <li><a href="#modificarUsuario">|Modificar usuarios|<span></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pencil"></span></a></li>
+            <li><a href="#modificarUsuario">|Modificar|<span></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pencil"></span></a></li>
             <li class="divider"></li>
 
            
@@ -56,8 +57,8 @@
           <li class="dropdown" id="centros">
          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestionar Centros <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-education"></span></a>
        	  <ul class="dropdown-menu forAnimate" role="menu">
-            <li><a href="#crearCentro">Crea</a></li>
-            <li><a href="#modificarCentro">Modifica</a></li>
+            <li><a href="#crearCentro">|Crear|<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
+            <li><a href="#modificarCentro">|Modificar|<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pencil"></span></a></li>
             <li class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li class="divider"></li>
@@ -68,8 +69,8 @@
           <li class="dropdown" id="gestionarEmpresa">
          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestionar Empresas <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plane"></span></a>
        	  <ul class="dropdown-menu forAnimate" role="menu">
-            <li><a href="#crearEmpresa">Crea</a></li>
-            <li><a href="#modificarEmpresa">Modifica</a></li>
+            <li><a href="#crearEmpresa">|Crear|<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
+            <li><a href="#modificarEmpresa">|Modificar|<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pencil"></span></a></li>
             <li class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li class="divider"></li>
@@ -141,11 +142,11 @@
                  <%@include file=".././modificarUsuario.jsp" %>
                 </div>
                 
-                
+                <div class="section" id="section4">
+                 <div  >
+                 <%@include file=".././registroEmpresa.jsp" %>
+                </div>
             </div>           
-        </div>
-	</div>
-</div>
 </section>
     
 </body>
@@ -159,12 +160,13 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#fullpage').fullpage({
-                    anchors: ['inicio','crearUsuario','crearTutor', 'modificarUsuario'],
+                    anchors: ['inicio','crearUsuario','crearTutor', 'modificarUsuario','crearEmpresa'],
                     menu: '#menu',
-                    loopTop: true,
-                    loopBottom: true,
+                    loopTop: false,
+                    loopBottom: false,
                     slidesNavigation: true,
-                    scrollOverflow: true
+                    scrollOverflow: true,
+                    scrollingSpeed: 600
                 });
             });
 </script>

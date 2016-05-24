@@ -104,13 +104,12 @@
 			    						<select id="tipoRegistro" name='tipoRegistro' onchange='obtenerTipoRegistro(this.value)'>
 			    							<option value="2">alumno</option>
 			    							<option value="1">profesor</option>
-			    							<option value="4">Tutor</option>
 			    						</select>
 			    					</div>
 			    				</div>
 			    			</div>
 			    			
-			    			<input type="submit" value="Register" class="btn btn-info btn-block">
+			    			<input type="submit" value="Registrar Usuario" class="btn btn-info btn-block">
 			    		
 			    		</form>
 			    	</div>
@@ -138,7 +137,7 @@ function obtenerDatos(str) {
             }
         };
         
-        xmlhttp.open("GET","obtenerDatosRegistroFamiliaProfesionalAjax.jsp?q="+str,true);
+        xmlhttp.open("GET",".././obtenerDatosRegistroFamiliaProfesionalAjax.jsp?q="+str,true);
         xmlhttp.send();
     }
     if(document.getElementById("familiaProfesional")){
@@ -171,7 +170,7 @@ function obtenerDatosFamiliaProfesional(str) {
             }
         };
         
-        xmlhttp.open("GET","obtenerDatosRegistroGradoAjax.jsp?q="+str,true);
+        xmlhttp.open("GET",".././obtenerDatosRegistroGradoAjax.jsp?q="+str,true);
         xmlhttp.send();
     }
     if(document.getElementById("grado")){
@@ -201,7 +200,7 @@ function obtenerDatosGrado(str) {
             }
         };
         
-        xmlhttp.open("GET","obtenerDatosRegistroEspecializacionAjax.jsp?q="+str,true);
+        xmlhttp.open("GET",".././obtenerDatosRegistroEspecializacionAjax.jsp?q="+str,true);
         xmlhttp.send();
     }
     

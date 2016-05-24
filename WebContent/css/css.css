@@ -1,3 +1,10 @@
-body{
+html, body{
 	background: rgb(210,210,210);
+	font-size: 12px;
+}
+
+@media (max-width: 1400px) {
+  html, body{
+	font-size: 10px;
+  }
 }

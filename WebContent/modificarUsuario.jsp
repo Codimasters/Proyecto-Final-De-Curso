@@ -7,7 +7,7 @@
 <body>
 <div class="row">
 	<div class="col-md-12">
-		<input type="text" class="form-control" placeholder="Busqueda de usuarios"></input>
+		<input type="text" class="form-control" id="buscador" placeholder="Busqueda de usuarios" onkeyup='buscador(this.value)'></input>
 	</div>
 </div>
 
@@ -25,12 +25,16 @@
           <th style="width: 36px;"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="datos">
       	 <%
       	rs= st.executeQuery("SELECT * FROM datosPersonales");
- 		while(rs.next()){
- 			out.println("<div> <tr id='"+rs.getInt(1)+"'><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(6)+"</td><td><a value='"+rs.getInt(1)+"' href='#'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-pencil'></span></a></td><td>  <a href='#modificarUsuario' onclick='eliminarUsuario(this.id)' id='"+rs.getInt(1)+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-remove'></span></a></td></tr>");
+  
+      	 while(rs.next()){
+      		if (rs.getInt(1) != usuario.getIdUsuario()){
+ 				out.println("<div> <tr id='"+rs.getInt(1)+"'><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(6)+"</td><td><a value='"+rs.getInt(1)+"' href='./panelModificarUsuario.jsp?a="+rs.getInt(1)+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-pencil'></span></a></td><td>  <a href='#modificarUsuario' onclick='eliminarUsuario(this.id)' id='"+rs.getInt(1)+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-remove'></span></a></td></tr>");
+      		}
  		}
+ 		
       	 %>
       </tbody>
     </table>
@@ -49,11 +53,30 @@ function eliminarUsuario(str) {
         }
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-
+			
             }
         };
         
         xmlhttp.open("GET",".././eliminarUsuarioAjax.jsp?q="+str,true);
+        xmlhttp.send();
+    }
+    
+function buscador(str) {
+
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("datos").innerHTML = xmlhttp.responseText;
+            }
+        };
+        
+        xmlhttp.open("GET",".././obtenerDatosBuscadorAjax.jsp?q="+str,true);
         xmlhttp.send();
     }
 </script>
