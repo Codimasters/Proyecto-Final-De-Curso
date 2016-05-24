@@ -6,4 +6,9 @@ Leopoldo Queipo.
 
 El proyecto ha sido realizado por Codimasters, comprendido por Alejandro Oses Armentas y Sergio Lucena Fernández.
 
+*---------------*
 23-5-2016: V0.1
+*---------------*
+*---------------*
+24-5-2016: V0.15
+*---------------*
