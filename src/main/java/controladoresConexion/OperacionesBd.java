@@ -3,6 +3,7 @@ import packageConexion.*;
 import java.util.ArrayList;
 import java.sql.*;
 import java.util.HashSet;
+import controladoresConexion.md5;
 
 import entities.*;
 
@@ -13,6 +14,7 @@ public class OperacionesBd {
 	
 	
 	public static Usuario login(String username, String password) throws SQLException{
+		
 		Conexion conexion= new Conexion();
 		String comprobarUsername="";
 		String comprobarContra="";
@@ -71,7 +73,7 @@ public class OperacionesBd {
 		System.out.println(idTipoUsuario);
 		
 		
-		ResultSet rs= st.executeQuery("SELECT idLogin, username FROM login WHERE username = '"+username+"' AND password = '"+password+"'");
+		ResultSet rs= st.executeQuery("SELECT idLogin, username FROM login WHERE username = '"+username+"' AND password = '"+md5.MD5(password)+"'");
 		while(rs.next()){
 			idUsuario= rs.getInt(1);
 			comprobarUsername= rs.getString(2);
@@ -435,7 +437,7 @@ public class OperacionesBd {
 			
 		}
 		if(comprobarUsername==""){
-			st.executeUpdate("INSERT INTO login(username, password) VALUES('"+username+"', '"+password+"')");
+			st.executeUpdate("INSERT INTO login(username, password) VALUES('"+username+"', '"+md5.MD5(password)+"')");
 
 			st.executeUpdate("INSERT INTO usuario(idUsuario,idTipoUsuario) VALUES(last_insert_id(),2)");
 			st.executeUpdate("INSERT INTO alumno(idUsuario,idCentroAlumno, idEspecializacion,idFamiliaProfesional,idGrado) VALUES(last_insert_id(),'"+idCentro+"','"+idEspecializacion+"','"+idFamiliaProfesional+"','"+idGrado+"')");
@@ -461,7 +463,7 @@ public class OperacionesBd {
 			
 		}
 		if(comprobarUsername==""){
-			st.executeUpdate("INSERT INTO login(username, password) VALUES('"+username+"', '"+password+"')");
+			st.executeUpdate("INSERT INTO login(username, password) VALUES('"+username+"', '"+md5.MD5(password)+"')");
 
 			st.executeUpdate("INSERT INTO usuario(idUsuario,idTipoUsuario) VALUES(last_insert_id(),1)");
 			st.executeUpdate("INSERT INTO profesor(idUsuario,idCentro, materia) VALUES(last_insert_id(),'"+idCentro+"','"+materia+"')");
@@ -490,7 +492,7 @@ public class OperacionesBd {
 			
 		}
 		if(comprobarUsername==""){
-			st.executeUpdate("INSERT INTO login(username, password) VALUES('"+username+"', '"+password+"')");
+			st.executeUpdate("INSERT INTO login(username, password) VALUES('"+username+"', '"+md5.MD5(password)+"')");
 
 			st.executeUpdate("INSERT INTO usuario(idUsuario,idTipoUsuario) VALUES(last_insert_id(),4)");
 			
@@ -513,5 +515,23 @@ public class OperacionesBd {
 
 				
 	}
+	
+	public static void registrarEmpresa(String nombre,String acronimo,String rubro,String direccionFiscal,String region,String ciudad,int telefono,String email) throws SQLException{
+		String comprobarNombre="";
+		Conexion conexion= new Conexion();
+		Statement st= conexion.conectar().createStatement();
+		ResultSet rs= st.executeQuery("SELECT nombre FROM empresa where nombre='"+nombre+"'");
+		while(rs.next()){
+			comprobarNombre= rs.getString(1);
+			
+		}
+		if(comprobarNombre==""){
+			st.executeUpdate("INSERT INTO empresa(nombre, acronimo,rubro, direccionFiscal, region, ciudad, telefono, email) VALUES('"+nombre+"', '"+acronimo+"', '"+rubro+"', '"+direccionFiscal+"', '"+region+"', '"+ciudad+"', '"+telefono+"', '"+email+"')");
+		}
+		
+
+				
+	}
+
 
 }
