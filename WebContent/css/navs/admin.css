@@ -97,9 +97,9 @@ body,html{
 	bottom: 0;
 	position: absolute;
 	}
-	@media ( max-height: 320px ){
+	@media ( max-height: 500px ){
 	    .navbar-bottom{
-			margin-top: 20px;
+			margin-top: 50px;
 			position: inherit;
 			
 
@@ -135,7 +135,7 @@ body,html{
 			position: absolute;
 			}
 		}
-	@media ( max-height: 320px ){
+	@media ( max-height: 500px ){
 	    .navbar-bottom{
 			margin-top: 20px;
 			position: inherit;
@@ -156,3 +156,23 @@ body,html{
   section{
     padding-left: 15px;
   }
+  
+  .navbar-minimalista{
+  	color: black !important;
+  	background-color:#9d356a !important
+  }
+  .navbar-minimalista * {
+  	color: #b4e0e9 !important;
+  }
+  
+ .navbar-minimalista .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #3c3e57;
+    color: #FFC0CB;
+}
+	.navbar-minimalista li.nav a:hover {
+	color: #fff !important;
+	}
+	.navbar-minimalista .dropdown-toggle:focus{
+		color: black !important;
+	}
+

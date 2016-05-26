@@ -26,7 +26,7 @@ String tipoRegistro = (String)request.getParameter("tipoRegistro");
 //OperacionesBd.login(nombre,password);
 
 //out.println(url.url.redirigir("usuario.jsp"));
-out.println("Tu nombre: "+nombre);
+/*out.println("Tu nombre: "+nombre);
 out.println("Tu primer apellido: "+apellido1);
 out.println("Tu segundo apellido: "+apellido2);
 out.println("Tu email: "+email);
@@ -36,7 +36,7 @@ out.println("Tu especializacion: "+especializacion);
 out.println("Tu familia profesional: "+familiaProfesional);
 out.println("Tu grado: "+grado);
 out.println("Tu nombre de usuario: "+username);
-out.println("Tu contrasenia: "+password);
+out.println("Tu contrasenia: "+password);*/
 
 switch(Integer.parseInt(tipoRegistro)){
 	case 1:
@@ -54,7 +54,11 @@ switch(Integer.parseInt(tipoRegistro)){
 }
 
 
+Usuario usuario = (Usuario)session.getAttribute("sesion");
 
+if (usuario.getTipoUsuario().getIdTipoUsuario() == 5){
+	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp#modificarUsuario');</script>");
+}
 
 /*
 //-------------------------------------------------------------------------------

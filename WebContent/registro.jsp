@@ -18,10 +18,10 @@
         <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
-        		<div class="panel-heading">
+        		<div class="panel-heading" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#c9e0e7;'");}else{}%>>
 			    		<center><h3 class="panel-title">Formulario de registro <small>te queremos en el equipo</small></h3><center>
 			 			</div>
-			 			<div class="panel-body">
+			 			<div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>>
 			    		<form id="formRegistro" role="form" method="post" action=".././validarRegistro.jsp">
 			    			<div class="row">
 			    				<div class="col-xs-4 col-sm-4 col-md-4">

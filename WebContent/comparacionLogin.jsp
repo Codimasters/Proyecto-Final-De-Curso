@@ -20,8 +20,9 @@ if (comprobacion.getIdUsuario()!=null){
 			//out.println(url.url.redirigir("usuario.jsp"));
 	if (comprobacion.getTipoUsuario().getIdTipoUsuario() == 5){
 		System.out.println(comprobacion.getIdUsuario());
+		session.setAttribute("temaNav", "navbar-inverse");
 		out.println(url.url.redirigir("./paneles/inicio.jsp"));
-		
+
 	}
 }
 

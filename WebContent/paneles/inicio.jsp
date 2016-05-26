@@ -3,6 +3,7 @@
 <% Usuario usuario = (Usuario)session.getAttribute("sesion");%>
 <%@ page language="java" import="packageConexion.*" %>
 <%@ page language="java" import="panel.Admin.*" %>
+
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head lang="es">
@@ -16,11 +17,11 @@
 	<link rel="stylesheet" href=".././css/jquery.fullpage.min.css">
     <link rel="stylesheet" href=".././css/jquery.fullpage.min.css">
 </head>
-<body>
+<body class="tema<%out.println(session.getAttribute("tema"));%>">
 
 
 <!--                                                             NAV VERTICAL                                                                      -->
-<nav id="menu" class="navbar navbar-default sidebar navbar-fixed-top" role="navigation">
+<nav id="menu" class="navbar <%=(String)session.getAttribute("temaNav") %> sidebar navbar-fixed-top" role="navigation">
     <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
@@ -76,8 +77,20 @@
             <li class="divider"></li>
           </ul>
           </li> 
-        <ul class="nav navbar-nav navbar-bottom">          
-        <li ><a href="#">Ajustes<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a></li>        
+        <ul class="nav navbar-nav navbar-bottom">         
+        <li ><a href="./perfil.jsp">Ajustes<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a></li>
+        
+        <li class="dropdown" id="temas">
+         	<a href="" class="dropdown-toggle" data-toggle="dropdown">Temas<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tint"></span></a>
+       	  <ul class="dropdown-menu forAnimate" role="menu">
+	            <li class="enlace"><a id="1" href=".././tema.jsp?tema=1">Por defecto<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pushpin"></span></a></li>
+	            <li class="enlace"><a id="2" href=".././tema.jsp?tema=2">Minimalista<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-unchecked"></span></a></li>
+	            <li class="enlace"><a id="3" href=".././tema.jsp?tema=3">Incandescente<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-fire"></span></a></li>
+	            <li class="enlace"><a id="4" href=".././tema.jsp?tema=4">Hexagono<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-large"></span></a></li>
+	            <li class="enlace"><a id="5" href=".././tema.jsp?tema=5">Miop&iacutea<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-eye-open"></span></a></li>
+	            <li class="enlace"><a id="6" href=".././tema.jsp?tema=6">Alto contraste<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-adjust"></span></a></li>
+          </ul>
+          </li>        
         <li ><a href="#">Cerrar Sesi&oacuten<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-off"></span></a></li>
       	</ul>
       </ul>
@@ -93,8 +106,8 @@
 	
        
                 <div class="section" id="section0">
-                <h1 class="text-center">SERVICIOS QUE OFRECE NUESTRA PLATAFORMA</h1>
-                    <div class="box">
+                <h1 class="text-center">SERVICIOS QUE OFRECE NUESTRA PLATAFORMA</h1><hr>
+                    <div class="box" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>">>
                     
                         <div class="box-content">
                         	
@@ -110,7 +123,7 @@
                 </div>
                 
                 <div class="section" id="section1">
-                <h1><center>REGISTRAR NUEVO ALUMNO/PROFESOR</center></h1>
+                <h1><center>REGISTRAR NUEVO ALUMNO/PROFESOR</center></h1><hr>
                     <!--<div class="box">
                         <div class="box-content">
                             <h1 class="tag-title">BUENA GESTI&OacuteN</h1>
@@ -124,7 +137,7 @@
                 </div>
                 
                 <div class="section" id="section2">
-                <h1><center>REGISTRAR NUEVO TUTOR</center></h1>
+                <h1><center>REGISTRAR NUEVO TUTOR</center></h1><hr>
                     <!--<div class="box">
                         <div class="box-content">
                             <h1 class="tag-title">BUENA GESTI&OacuteN</h1>
@@ -138,15 +151,15 @@
                 </div>
                 
                 <div class="section" id="section3">
-                <h1><center>EDITAR USUARIOS</center></h1>
+                <h1><center>EDITAR USUARIOS</center></h1><hr>
                  <%@include file=".././modificarUsuario.jsp" %>
                 </div>
                 
                 <div class="section" id="section4">
-                 <div  >
-                 <%@include file=".././registroEmpresa.jsp" %>
-                </div>
-            </div>           
+                 	<div  >
+                 		<%@include file=".././registroEmpresa.jsp" %>
+                	</div>
+            	</div>       
 </section>
     
 </body>

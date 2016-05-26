@@ -1,7 +1,7 @@
 body,html{
-    background: url(".././imagenes/fondos/fondoqueipo.jpg");
-    background-color: gray;
-    background-repeat: no-repeat;
+    background: url(".././imagenes/fondos/admin.jpg");
+	background-color: black;
+	background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -155,3 +155,73 @@ section{
 .toppad
 {margin-top:20px;
 }
+
+//                                                    FONDOS                                                            
+
+li:hover{
+	cursor: pointer !important;
+	cursor: hand !important;
+}
+
+.tema1{
+	background: url(".././imagenes/fondos/admin.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.tema2{
+	background: url(".././imagenes/fondos/fondo1.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.tema3{
+	background: url(".././imagenes/fondos/fondo2.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.tema4{
+	background: url(".././imagenes/fondos/fondo3.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.tema5{
+	background: url(".././imagenes/fondos/fondo4.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.tema6{
+	background: url(".././imagenes/fondos/fondo5.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+//                                                            TEMAS CAJAS
+
+ .box-inverse{
+  background:#ccc;
+  transition:all 0.2s ease;
+  border:2px dashed #dadada;
+  margin-top: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-clip: padding-box;
+  padding:0 20px 20px 20px;
+  min-height:340px;
+ }
+ //
