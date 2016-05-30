@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-may-2016 15:38:59 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="entities.DatosContacto" table="datosContacto" catalog="pruebaFct" optimistic-lock="version">
+        <id name="idUsuario" type="int">
+            <column name="idUsuario" />
+            <generator class="foreign">
+                <param name="property">usuario</param>
+            </generator>
+        </id>
+        <one-to-one name="usuario" class="entities.Usuario" constrained="true"></one-to-one>
+        <property name="telefono" type="int">
+            <column name="telefono" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
