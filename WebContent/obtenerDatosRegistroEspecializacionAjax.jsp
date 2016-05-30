@@ -17,7 +17,7 @@
 	
 		Conexion conexion= new Conexion();
 		Statement st= conexion.conectar().createStatement();
-		ResultSet rs= st.executeQuery("select idEspecializacion,nombre from especializacion where idEspecializacion= (select idEspecializacion from relacionGE where idGrado='"+q+"') ");
+		ResultSet rs= st.executeQuery("select idEspecializacion,nombre from especializacion where idEspecializacion in (select idEspecializacion from relacionGE where idGrado='"+q+"') ");
 		
 		out.println("<div class='row'><div class='col-xs-12 col-sm-12 col-md-12'><div class='form-group'>");
 		out.println("<select name='especializacion'  id='especializacion'><option value='0'>Selecciona una especializacion</option>");

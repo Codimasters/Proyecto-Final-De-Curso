@@ -22,11 +22,11 @@
 			    		<center><h3 class="panel-title">Formulario de registro <small>de especializacion</small></h3><center>
 			 			</div>
 			 			<div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>>
-			    		<form id="formRegistro" role="form" method="post" action=".././validarRegistro.jsp">
+			    		<form id="formRegistro" role="form" method="post" action=".././validarRegistroCentro.jsp">
 			    			<div class="row">
 			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
-			                <input type="text" name="nombre" id="nombre" class="form-control input-sm floatlabel" placeholder="Nombre de la familia profesional">
+			                <input type="text" name="nombreEspecializacion" id="nombre" class="form-control input-sm floatlabel" placeholder="Nombre de la familia profesional">
 			    					</div>
 			    				</div>
 			    			</div>
