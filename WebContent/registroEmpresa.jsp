@@ -18,7 +18,7 @@
         <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
-        		<div class="panel-heading"<% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#c9e0e7;'");}else{}%>>
+        		<div class="panel-heading" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#7a2b24;color:white;'");}else{}%>>
 			    		<center><h3 class="panel-title">Registro <small>de empresas</small></h3><center>
 			 			</div>
 			 			<div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>>
@@ -72,7 +72,7 @@
 			    				</div>
 			    			</div>
 			    			
-			    			<input type="submit" value="Crear Empresa" class="btn btn-info btn-block">
+			    			<input type="submit" value="Crear Empresa" class="btn btn-info btn-block" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#70322b;'");}else{}%>>
 			    		
 			    		</form>
 			    	</div>

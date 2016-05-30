@@ -19,7 +19,7 @@
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
         		<div class="panel-heading" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#7a2b24;color:white;'");}else{}%>>
-			    		<center><h3 class="panel-title">Formulario de registro de tutores<small><br>siempre responsables</small></h3><center>
+			    		<center><h3 class="panel-title">Formulario de registro de responsable empresa<small><br>siempre responsables</small></h3><center>
 			 			</div>
 			 			<div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>>
 			    		<form id="formRegistro" role="form" method="post" action=".././validarRegistro.jsp">
@@ -63,9 +63,8 @@
 			    							<%
 			    						/*	Conexion conexion= new Conexion();
 						    				Statement st= conexion.conectar().createStatement();*/
-						    				int idEmpresa;
-											String nombre;
-											/*ResultSet*/ rs=st.executeQuery("select idEmpresa, nombre from empresa");
+						    				
+											/*ResultSet*/ rs=st.executeQuery("select idEmpresa, nombre from empresa WHERE idEmpresa NOT IN (SELECT idEmpresa FROM responsableEmpresa)");
 			    							while(rs.next()){
 			    								idEmpresa= rs.getInt(1);
 			    								nombre= rs.getString(2);
@@ -88,13 +87,8 @@
 			    			<div class="row">
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
-			    					</div>
-			    				</div>
-			    				<div class="col-xs-6 col-sm-6 col-md-6">
-			    					<div class="form-group">
 			    						<select id="tipoRegistro" name='tipoRegistro' onchange='obtenerTipoRegistro(this.value)' hidden>
-			    							<option value="4">tutor</option>
+			    							<option value="3">Responsable Empresa</option>
 			    						</select>
 			    					</div>
 			    				</div>

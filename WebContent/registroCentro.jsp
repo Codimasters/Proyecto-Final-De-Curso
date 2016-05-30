@@ -19,98 +19,19 @@
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
         		<div class="panel-heading" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#7a2b24;color:white;'");}else{}%>>
-			    		<center><h3 class="panel-title">Formulario de registro <small>te queremos en el equipo</small></h3><center>
+			    		<center><h3 class="panel-title">Formulario de registro <small>de centros</small></h3><center>
 			 			</div>
 			 			<div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>>
 			    		<form id="formRegistro" role="form" method="post" action=".././validarRegistro.jsp">
 			    			<div class="row">
-			    				<div class="col-xs-4 col-sm-4 col-md-4">
-			    					<div class="form-group">
-			                <input type="text" name="nombre" id="nombre" class="form-control input-sm floatlabel" placeholder="nombre">
-			    					</div>
-			    				</div>
-			    				<div class="col-xs-4 col-sm-4 col-md-4">
-			    					<div class="form-group">
-			    						<input type="text" name="apellido1" id="apellido1" class="form-control input-sm" placeholder="apellido1">
-			    					</div>
-			    				</div>
-			    				<div class="col-xs-4 col-sm-4 col-md-4">
-			    					<div class="form-group">
-			    						<input type="text" name="apellido2" id="apellido2" class="form-control input-sm" placeholder="apellido2">
-			    					</div>
-			    				</div>
-			    			</div>
-			    			<div class="form-group">
-			    				<input type="dni" name="dni" id="dni" class="form-control input-sm" placeholder="Inserta el DNI">
-			    			</div>
-
-			    			<div class="form-group">
-			    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
-			    			</div>
-			    			
-			    			<div class="row">
 			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
-			                			<input type="text" name="telefono" id="telefono" class="form-control input-sm floatlabel" placeholder="Telefono">
+			                <input type="text" name="nombre" id="nombre" class="form-control input-sm floatlabel" placeholder="Nombre del centro">
 			    					</div>
 			    				</div>
 			    			</div>
 			    			
-			    			<div class="row">
-			    				<div class="col-xs-12 col-sm-12 col-md-12">
-			    					<div class="form-group">
-			                			<select name='nombreCentro' id='centro' onchange="obtenerDatos(this.value)">
-			                				<option value="0">Seleccione un centro</option>
-			    							<% 
-			    							Conexion conexion= new Conexion();
-						    				Statement st= conexion.conectar().createStatement();
-											int idCentro;
-											String nombreCentro;
-			    							ResultSet rs=st.executeQuery("select * from centro");
-			    							while(rs.next()){
-			    								idCentro= rs.getInt(1);
-			    								nombreCentro= rs.getString(2);
-			    								out.println("<option value='"+idCentro+"'>"+nombreCentro+"</option>");
-			    							}
-			    							%>
-			    						</select>
-			    					</div>
-			    				</div>
-			    			</div>
-			    			
-			    				<div id="datosConsultasFamiliaProfesional"></div>
-			    				<div id="datosConsultasGrado"></div>
-			    				<div id="datosConsultasEspecializacion"></div>
-			    				<div id="materiasProfesor"></div>
-									
-
-			    				
-			    			<div class="row">
-			    				<div class="col-xs-12 col-sm-12 col-md-12">
-			    					<div class="form-group">
-			                			<input type="text" name="username" id="username" class="form-control input-sm floatlabel" placeholder="nombre de usuario">
-			    					</div>
-			    				</div>
-			    			</div>
-			
-			    			<div class="row">
-			    				<div class="col-xs-6 col-sm-6 col-md-6">
-			    					<div class="form-group">
-			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
-			    					</div>
-			    				</div>
-			    				<div class="col-xs-6 col-sm-6 col-md-6">
-			    					<div class="form-group">
-			    						<select id="tipoRegistro" name='tipoRegistro' onchange='obtenerTipoRegistro(this.value)'>
-			    							<option value="2">alumno</option>
-			    							<option value="1">profesor</option>
-			    							<option value="6">director</option>
-			    						</select>
-			    					</div>
-			    				</div>
-			    			</div>
-			    			
-			    			<input type="submit" value="Registrar Usuario" class="btn btn-info btn-block" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#70322b;'");}else{}%>>
+			    			<input type="submit" value="Crear Centro" class="btn btn-info btn-block" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#70322b;'");}else{}%>>
 			    		
 			    		</form>
 			    	</div>

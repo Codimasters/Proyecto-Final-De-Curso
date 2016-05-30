@@ -20,7 +20,7 @@ String grado = (String)request.getParameter("grado");
 String username = (String)request.getParameter("username");
 String password = (String)request.getParameter("password");
 String tipoRegistro = (String)request.getParameter("tipoRegistro");
-
+String idEmpresa = "";
 
 
 //OperacionesBd.login(nombre,password);
@@ -41,16 +41,23 @@ out.println("Tu contrasenia: "+password);*/
 switch(Integer.parseInt(tipoRegistro)){
 	case 1:
 		String materia = (String)request.getParameter("materia");
-		OperacionesBd.registrarProfesor(nombre, apellido1, apellido2, email, telefono, nombreCentro, especializacion, familiaProfesional, grado, username, password, tipoRegistro, dni, materia);
+		OperacionesBd.registrarProfesor(nombre, apellido1, apellido2, email, telefono, nombreCentro, especializacion, familiaProfesional, grado, username, password, tipoRegistro, dni, materia,0);
 		break;
 	case 2:
 		OperacionesBd.registrarAlumno(nombre, apellido1, apellido2, email, telefono, nombreCentro, especializacion, familiaProfesional, grado, username, password, tipoRegistro, dni);
 		break;
-		
+	case 3:
+		idEmpresa = (String)request.getParameter("idEmpresa");
+		OperacionesBd.registrarResponsableEmpresa(nombre,apellido1,apellido2,email,telefono,username,tipoRegistro,dni,idEmpresa);
+		break;
 	case 4:
-		String idEmpresa = (String)request.getParameter("idEmpresa");
-
+		idEmpresa = (String)request.getParameter("idEmpresa");
 		OperacionesBd.registrarTutor(nombre, apellido1, apellido2,email, telefono, username,password,tipoRegistro,dni,idEmpresa);
+		break;
+	case 6:
+		materia = (String)request.getParameter("materia");
+		OperacionesBd.registrarProfesor(nombre, apellido1, apellido2, email, telefono, nombreCentro, especializacion, familiaProfesional, grado, username, password, tipoRegistro, dni, materia,1);
+		break;
 }
 
 

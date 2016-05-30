@@ -3,37 +3,11 @@
 <%
 int temita = (int)Integer.parseInt(request.getParameter("tema"));
 System.out.println("tema: "+temita);
-/*if (temita == 1){
-	session.removeAttribute("tema");
-	session.setAttribute("tema", 1);
-	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp');</script>");
-}
-else if(temita == 2){
-	session.removeAttribute("tema");
-	session.setAttribute("tema", "2");
-	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp');</script>");
-}
-else if(temita == 3){
-	session.removeAttribute("tema");
-	session.setAttribute("tema", 3);
-	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp');</script>");
-}
-else if(temita == 4){
-	session.removeAttribute("tema");
-	session.setAttribute("tema", 4);
-	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp');</script>");
-}
-
-else{
-	session.removeAttribute("tema");
-	session.setAttribute("tema", 1);
-	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp');</script>");
-}*/
 
 switch(temita){
 	case 1:
 		session.removeAttribute("tema");
-		session.setAttribute("tema", 1);
+		session.setAttribute("tema", "1");
 		session.removeAttribute("temaNav");
 		session.removeAttribute("temaCaja");
 		session.setAttribute("temaNav", "navbar-inverse");
@@ -51,7 +25,7 @@ switch(temita){
 		break;
 	case 3:
 		session.removeAttribute("tema");
-		session.setAttribute("tema", 3);
+		session.setAttribute("tema", "3");
 		session.removeAttribute("temaNav");
 		session.removeAttribute("temaCaja");
 		session.setAttribute("temaNav", "navbar-inverse");
@@ -60,7 +34,7 @@ switch(temita){
 		break;
 	case 4:
 		session.removeAttribute("tema");
-		session.setAttribute("tema", 4);
+		session.setAttribute("tema", "4");
 		session.removeAttribute("temaNav");
 		session.removeAttribute("temaCaja");
 		session.setAttribute("temaNav", "navbar-inverse");
@@ -69,7 +43,7 @@ switch(temita){
 		break;
 	case 5:
 		session.removeAttribute("tema");
-		session.setAttribute("tema", 5);
+		session.setAttribute("tema", "5");
 		session.removeAttribute("temaNav");
 		session.removeAttribute("temaCaja");
 		session.setAttribute("temaNav", "navbar-inverse");
