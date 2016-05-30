@@ -270,6 +270,17 @@
                         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                         <span class="pull-right">
                             <input value="Modificar" data-original-title="Editar este usuario" data-toggle="tooltip" type="submit" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></input>
+                            <% if (idTipoUsuario==3){
+                            	int idEmpresa=0;
+                            	rs = st.executeQuery("SELECT idEmpresa FROM responsableEmpresa WHERE idUsuario='"+idUsuario+"'");
+                        		if (rs.next()){
+                        			idEmpresa = rs.getInt(1);
+                        			
+                        		}
+                            		out.println("<a href='panelModificarEmpresa.jsp?a="+idEmpresa+"'><input value='Modificar empresa' data-original-title='Editar empresa' data-toggle='tooltip' type='buttom' class='btn btn-sm btn-warning'><i class='glyphicon glyphicon-edit'></i></input></a>");
+                            	}
+                            %>
+                            
                             <a data-original-title="Eliminar este usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>
                     </div>

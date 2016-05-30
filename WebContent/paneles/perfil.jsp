@@ -88,19 +88,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Modificar Usuario - <%out.println(username);%></title>
+<title>Modificar Perfil - <%out.println(username);%></title>
 <link href=".././Bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href=".././css/css.css" rel="stylesheet">
 </head>
-<body class="tema1">
+<body class="tema<%out.println(session.getAttribute("tema"));%>">
 
 <!-- Centered Tabs -->
-<ul class="nav nav-tabs nav-justified">
-  <li><a id="1" onclick="tema(this.id)">Minimalista</a></li>
-  <li><a id="2" onclick="tema(this.id)">Incandescente</a></li>
-  <li><a id="3" onclick="tema(this.id)">Hexagono</a></li>
-  <li><a id="4" onclick="tema(this.id)">Miop&iacutea</a></li>
-</ul>
 
 <form method="POST" action=".././editarUsuario.jsp"> 
 <div class="container">
@@ -111,11 +105,11 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
    
    
-          <div class="panel panel-info">
-            <div id="cabecera" class="panel-heading">
+          <div class="panel panel-info" >
+            <div id="cabecera" class="panel-heading" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#c9e0e7;'");}else{}%>>
               <h3 class="panel-title"><%out.println(apellido1+" "+apellido2+", "+nombre);%></h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;color:white;'");}else if((String)session.getAttribute("tema")=="2"){out.println("style='background:#96c261;'");}else{}%>>
               <div class="row">
                 <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src=".././imagenes/iconos/perfilpic.png" class="img-circle img-responsive"> </div>
                 
@@ -206,7 +200,7 @@
               </div>
             </div>
             
-                 <div class="panel-footer">
+                 <div class="panel-footer" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#4d3f58;'");}else if((String)session.getAttribute("tema")=="2"){out.println("style='background:#99366a;'");} else{}%>>
                         <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                         <span class="pull-right">
                             <input value="Modificar" data-original-title="Editar este usuario" data-toggle="tooltip" type="submit" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></input>
@@ -220,20 +214,4 @@
     </div>
     </form>
 </body>
-<script>
-function tema(str) {
-	if (str == 1){
-		document.getElementsByTagName("body")[0].setAttribute("class", "tema1");
-	}
-	if (str == 2){
-		document.getElementsByTagName("body")[0].setAttribute("class", "tema2");
-	}
-	if (str == 3){
-		document.getElementsByTagName("body")[0].setAttribute("class", "tema3");
-	}
-	if (str == 4){
-		document.getElementsByTagName("body")[0].setAttribute("class", "tema4");
-	}
-}
-</script>
 </html>

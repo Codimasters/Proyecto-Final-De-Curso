@@ -45,6 +45,7 @@
 			<!--                                    MENU DE CREAR USUARIOS (INSERTAR LINKS FULLPAGE )                          -->
             <li><a href="#crearUsuario">&#183<u>Profesores/Alumnos</u></a></li>
             <li><a href="#crearTutor">&#183<u>Tutores</u></a>
+            <li><a href="#crearResponsableEmpresa">&#183<u>Responsables</u></a>
         
           </ul></li>
             <li class="divider"></li>
@@ -58,12 +59,10 @@
           <li class="dropdown" id="centros">
          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestionar Centros <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-education"></span></a>
        	  <ul class="dropdown-menu forAnimate" role="menu">
-            <li><a href="#crearCentro">|Crear|<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
-            <li><a href="#modificarCentro">|Modificar|<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pencil"></span></a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Informes</a></li>
+            <li><a href="#crearCentro">Crear centro<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
+            <li><a href="#crearFamiliaProfesional">Crear fam.Prof<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
+            <li><a href="#crearGrado">Crear grado<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
+            <li><a href="#crearEspecializacion">Crear espec.<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
           </ul>
           </li> 
           
@@ -107,12 +106,12 @@
        
                 <div class="section" id="section0">
                 <h1 class="text-center">SERVICIOS QUE OFRECE NUESTRA PLATAFORMA</h1><hr>
-                    <div class="box" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>">>
+                    <div class="box" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>">
                     
                         <div class="box-content">
                         	
                             <h2 class="tag-title">DISE&NtildeO RESPONSIVE</h2>
-                            <hr />
+                            <hr>
                             <p>
                             Disfruta del dise&ntildeo responsive de la aplicaci&oacuten, deja que nosotros hagamos lo duro por ti, navega sin quebraderos de cabeza.
                             </p>
@@ -159,7 +158,39 @@
                  	<div  >
                  		<%@include file=".././registroEmpresa.jsp" %>
                 	</div>
-            	</div>       
+            	</div> 
+            	
+            	<div class="section" id="section5">
+                 	<div  >
+                 		<%@include file=".././registroResponsableEmpresa.jsp" %>
+                	</div>
+            	</div>      
+            	<div class="section" id="section6">
+                 	<div  >
+                 		<%@include file=".././modificarEmpresa.jsp" %>
+                	</div>
+            	</div>
+            	<div class="section" id="section7">
+                 	<div  >
+                 		<%@include file=".././registroCentro.jsp" %>
+                	</div>
+            	</div>
+            	<div class="section" id="section8">
+                 	<div>
+                 		<%@include file=".././registroFamiliaProfesional.jsp" %>
+                	</div>
+            	</div>
+            	<div class="section" id="section9">
+                 	<div>
+                 		<%@include file=".././registroGrado.jsp" %>
+                	</div>
+            	</div>
+            	<div class="section" id="section10">
+                 	<div>
+                 		<%@include file=".././registroEspecializacion.jsp" %>
+                	</div>
+            	</div>
+            	      
 </section>
     
 </body>
@@ -173,7 +204,7 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#fullpage').fullpage({
-                    anchors: ['inicio','crearUsuario','crearTutor', 'modificarUsuario','crearEmpresa'],
+                    anchors: ['inicio','crearUsuario','crearTutor', 'modificarUsuario','crearEmpresa', 'crearResponsableEmpresa','modificarEmpresa','crearCentro', 'crearFamiliaProfesional','crearGrado','crearEspecializacion'],
                     menu: '#menu',
                     loopTop: false,
                     loopBottom: false,
