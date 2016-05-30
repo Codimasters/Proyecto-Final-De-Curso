@@ -16,3 +16,7 @@ El proyecto ha sido realizado por Codimasters, comprendido por Alejandro Oses Ar
 *---------------*
 26-5-2016: V0.2
 *---------------*
+
+*---------------*
+30-5-2016: V0.35
+*---------------*
