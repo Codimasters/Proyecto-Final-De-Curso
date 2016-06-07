@@ -4,8 +4,19 @@
 <%@ page language="java" import="controladoresConexion.*" %>
 <%@ page language="java" import="packageConexion.*" %>
 <%@page import="java.sql.*"%>
+<%@page import="entities.*"%>
 
 <%
+Usuario usuario = (Usuario)session.getAttribute("sesion");
+
+if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=3){
+		out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando panelModificarEmpresa')</script>");
+		out.println(url.url.redirigir("index.jsp"));	
+	}	
+}
+
+
 	String idEmpresa = (String)request.getParameter("a");
 	String.valueOf(idEmpresa);
 //CAMBIAR idUsuario por el valor del GET//
@@ -54,9 +65,15 @@
 <title>Modificar Empresa - <%out.println(nombre);%></title>
 <link href=".././Bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href=".././css/css.css" rel="stylesheet">
+<link href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" rel="stylesheet">
 </head>
+<style>
+body{
+background-color: #4D3F58;
+}
+</style>
 <body class="tema<%out.println(session.getAttribute("tema"));%>">
-<form method="POST" action=".././editarEmpresa.jsp"> 
+<form id="formModificarEmpresa" method="POST" action=".././editarEmpresa.jsp"> 
 <div class="container">
       <div class="row">
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
@@ -72,19 +89,6 @@
             <div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;color:white;'");}else if((String)session.getAttribute("tema")=="2"){out.println("style='background:#96c261;'");}else{}%>">
               <div class="row">
                 <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src=".././imagenes/iconos/perfilpic.png" class="img-circle img-responsive"> </div>
-                
-                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                  <dl>
-                    <dt>DEPARTMENT:</dt>
-                    <dd>Administrator</dd>
-                    <dt>HIRE DATE</dt>
-                    <dd>11/12/2013</dd>
-                    <dt>DATE OF BIRTH</dt>
-                       <dd>11/12/2013</dd>
-                    <dt>GENDER</dt>
-                    <dd>Male</dd>
-                  </dl>
-                </div>-->
                 <div class=" col-md-9 col-lg-9 ">
                 
                   <table class="table table-user-information">
@@ -96,7 +100,7 @@
                       </tr>
                       <tr>
                       	<td>Acr&oacutenimo:</td>
-                        <td><input name="acronimo" type="text" value="<%out.println(acronimo);%>"></input></td>
+                        <td><div class="form-group"><input class="form-control" name="acronimo" type="text" value="<%out.println(acronimo);%>"></input></div></td>
                       </tr>
                       <tr>
                       <input type="text" name="idEmpresa" value="<%out.println(idEmpresa);%>" hidden>
@@ -106,29 +110,29 @@
                       
                       <tr>
                         <td>Rubro:</td>
-                        <td><input name="rubro" type="text" value="<%out.println(rubro);%>"></input></td>
+                        <td><div class="form-group"><input class="form-control" name="rubro" type="text" value="<%out.println(rubro);%>"></input></div></td>
                       </tr>
                       <tr>
                         <td>Direcci&oacuten Fiscal:</td>
-                        <td><input name="direccionFiscal" type="text" value="<%out.println(direccionFiscal);%>"></input></td>
+                        <td><div class="form-group"><input class="form-control" name="direccionFiscal" type="text" value="<%out.println(direccionFiscal);%>"></input></div></td>
                       </tr>
                    
                          <tr>
                              <tr>
                         <td>Region:</td>
-                        <td><input name="region" type="text" value="<%out.println(region);%>"></input></td>
+                        <td><div class="form-group"><input class="form-control" name="region" type="text" value="<%out.println(region);%>"></input></div></td>
                       </tr>
                         <tr>
                         <td>Ciudad:</td>
-                        <td><input name="ciudad" type="text" value="<%out.println(ciudad);%>"></input></td>
+                        <td><div class="form-group"><input class="form-control" name="ciudad" type="text" value="<%out.println(ciudad);%>"></input></div></td>
                       </tr>
                       
                       <tr>
                         <td>E-mail:</td>
-                        <td><input name="email" type="text" value="<%out.println(email);%>"></input></a></td>
+                        <td><div class="form-group"><input class="form-control" name="email" type="text" value="<%out.println(email);%>"></input></div></td>
                       </tr>
                         <td>Teléfono de empresa:</td>
-                        <td><input name="telefono" type="text" value="<%out.println(telefono);%>"></input><br><!--<br>555-4567-890(Mobile)-->
+                        <td><div class="form-group"><input class="form-control" name="telefono" type="text" value="<%out.println(telefono);%>"></input></div><br><!--<br>555-4567-890(Mobile)-->
                         </td>
                            
                     	
@@ -141,12 +145,12 @@
             </div>
             
                  <div class="panel-footer" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#4d3f58;'");}else if((String)session.getAttribute("tema")=="2"){out.println("style='background:#99366a;'");} else{}%>>
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                        <span class="pull-right">
-                            <input value="Modificar" data-original-title="Editar este usuario" data-toggle="tooltip" type="submit" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></input>
-                            <% out.println("<a href='panelModificarUsuario.jsp?a="+idResponsableEmpresa+"'><input value='Modificar responsable' data-original-title='Editar responsable' data-toggle='tooltip' type='buttom' class='btn btn-sm btn-warning'><i class='glyphicon glyphicon-edit'></i></input></a>");%>
+                        
+                        
+                            <input value="Modificar" data-original-title="Editar este usuario" data-toggle="tooltip" type="submit" class="btn btn-sm btn-warning"></input>
+                            <% out.println("<a href='panelModificarUsuario.jsp?a="+idResponsableEmpresa+"'><input value='Modificar responsable' data-original-title='Editar responsable' data-toggle='tooltip' type='buttom' class='btn btn-sm btn-warning'></input></a>");%>
                             <a data-original-title="Eliminar este usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                        </span>
+                        
                     </div>
             
           </div>
@@ -155,5 +159,11 @@
       </div>
     </div>
     </form>
+    <script src=".././js/jquery.min.js"></script>
+<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js">
+
+</script>
+<script src=".././js/validatorModificarEmpresa.js" type="text/javascript">
+</script>
 </body>
 </html>

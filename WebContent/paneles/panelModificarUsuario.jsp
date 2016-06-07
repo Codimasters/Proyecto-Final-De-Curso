@@ -4,8 +4,24 @@
 <%@ page language="java" import="controladoresConexion.*" %>
 <%@ page language="java" import="packageConexion.*" %>
 <%@page import="java.sql.*"%>
+<%@page import="entities.*"%>
 
 <%
+Usuario usuario = (Usuario)session.getAttribute("sesion");
+boolean comprobar= false;
+if (usuario == null){
+	out.println("<script>alert('Intentando acceder a un area restringida.')</script>");
+	out.println(url.url.redirigir("./index.jsp"));
+}
+
+else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=6){
+		if (usuario.getTipoUsuario().getIdTipoUsuario()!=1){
+			out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando panelModificarUsuario')</script>");
+			out.println(url.url.redirigir("index.jsp"));
+		}
+	}	
+}
 	String idUsuario = (String)request.getParameter("a");
 	String.valueOf(idUsuario);
 //CAMBIAR idUsuario por el valor del GET//
@@ -90,9 +106,16 @@
 <title>Modificar Usuario - <%out.println(username);%></title>
 <link href=".././Bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href=".././css/css.css" rel="stylesheet">
+<link href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" rel="stylesheet">
+
 </head>
+<style>
+body{
+background-color: #4D3F58;
+}
+</style>
 <body>
-<form method="POST" action=".././editarUsuario.jsp"> 
+<form id="formModificarUsuario" method="POST" action=".././editarUsuario.jsp"> 
 <div class="container">
       <div class="row">
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
@@ -108,19 +131,7 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src=".././imagenes/iconos/perfilpic.png" class="img-circle img-responsive"> </div>
-                
-                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                  <dl>
-                    <dt>DEPARTMENT:</dt>
-                    <dd>Administrator</dd>
-                    <dt>HIRE DATE</dt>
-                    <dd>11/12/2013</dd>
-                    <dt>DATE OF BIRTH</dt>
-                       <dd>11/12/2013</dd>
-                    <dt>GENDER</dt>
-                    <dd>Male</dd>
-                  </dl>
-                </div>-->
+
                 <div class=" col-md-9 col-lg-9 ">
                 
                   <table class="table table-user-information">
@@ -140,36 +151,36 @@
                       <tr>
                       <input type="text" name="idUsuario" value="<%out.println(idUsuario);%>" hidden>
                         <td><u>Cuenta:</u></td>
-                        <td><input name="username" type="text" value="<%out.println(username);%>"></input></td>
+                        <td><div class="form-group"><input class="form-control" name="username" type="text" value="<%out.println(username);%>"></input></div></td>
                       </tr>
                       <tr>
                         <td><u>Contraseña:</u></td>
-                        <td><input name="password" type="text" placeholder="Dejar en blanco si no hay cambio"></input></td>
+                        <td><div class="form-group"><input class="form-control" name="password" type="text" placeholder="Dejar en blanco si no hay cambio"></input></div></td>
                       </tr>
                       <tr>
                         <td>Nombre:</td>
-                        <td><input name="nombre" type="text" value="<%out.println(nombre);%>"></input></td>
+                        <td><div class="form-group"><input class="form-control" name="nombre" type="text" value="<%out.println(nombre);%>"></input></div></td>
                       </tr>
                       <tr>
                         <td>Primer Apellido:</td>
-                        <td><input name="apellido1" type="text" value="<%out.println(apellido1);%>"></input></td>
+                        <td><div class="form-group"><input class="form-control" name="apellido1" type="text" value="<%out.println(apellido1);%>"></input></div></td>
                       </tr>
                    
                          <tr>
                              <tr>
                         <td>Segundo Apellido:</td>
-                        <td><input name="apellido2" type="text" value="<%out.println(apellido2);%>"></input></td>
+                        <td><div class="form-group"><input class="form-control" name="apellido2" type="text" value="<%out.println(apellido2);%>"></input></div></td>
                       </tr>
                         <tr>
                         <td>DNI</td>
-                        <td><input name="dni" type="text" value="<%out.println(dni);%>"></input></td>
+                        <td><div class="form-group"><input class="form-control" name="dni" type="text" value="<%out.println(dni);%>"></input></div></td>
                       </tr>
                       <tr>
                         <td>E-mail</td>
-                        <td><input name="email" type="text" value="<%out.println(email);%>"></input></a></td>
+                        <td><div class="form-group"><input class="form-control" name="email" type="text" value="<%out.println(email);%>"></input></div></td>
                       </tr>
                         <td>Teléfono de contacto</td>
-                        <td><input name="telefono" type="text" value="<%out.println(telefono);%>"></input><br><!--<br>555-4567-890(Mobile)-->
+                        <td><div class="form-group"><input class="form-control" name="telefono" type="text" value="<%out.println(telefono);%>"></input></div><br><!--<br>555-4567-890(Mobile)-->
                         </td>
                            
                       </tr>
@@ -180,7 +191,7 @@
                     		rs = st.executeQuery("SELECT * FROM profesor  WHERE idUsuario='"+idUsuario+"'");
                     		if (rs.next()){
                     			materia = rs.getString(3);
-                    			out.println("<tr><td>Materia</td><td><input type='text' name='materia' value='"+materia+"'></input></td></tr>");
+                    			out.println("<tr><td>Materia</td><td><div class='form-group'><input type='text' name='materia' value='"+materia+"'></input></div></td></tr>");
                     		}
               
                     		
@@ -189,7 +200,7 @@
                     	  rs = st.executeQuery("SELECT expediente FROM alumno  WHERE idUsuario='"+idUsuario+"'");
                   		if (rs.next()){
                   			expediente = rs.getInt(1);
-                  			out.println("<tr><td>expediente</td><td><input type='text' name='expediente' value='"+expediente+"'></input></td></tr>");
+                  			out.println("<tr><td>expediente</td><td><div class='form-group'><input type='text' name='expediente' value='"+expediente+"'></input></div></td></tr>");
                   		}
                       }
                       else if(idTipoUsuario==4){
@@ -240,7 +251,7 @@
                     	  int addIdProfesorTutor=0;
                     	  String addApellido1ProfesorTutor;
                     	  String addApellido2ProfesorTutor;
-                    	  rs = st.executeQuery("select idUsuario, nombre, apellido1, apellido2 from datosPersonales where idUsuario=(SELECT idUsuario FROM profesor WHERE idUsuario not in(SELECT idProfesor FROM relacionPT WHERE idTutor = '"+idUsuario+"' OR idProfesor IS NULL))");
+                    	  rs = st.executeQuery("select idUsuario, nombre, apellido1, apellido2 from datosPersonales where idUsuario in (SELECT idUsuario FROM profesor WHERE idUsuario not in(SELECT idProfesor FROM relacionPT WHERE idTutor = '"+idUsuario+"' OR idProfesor IS NULL))");
                     	  out.println("<tr><td>Añadir profesores a cargo:</td><td><select name='addProfesorTutor' multiple>");
                     	  while (rs.next()){
                     			addIdAlumnoTutor = rs.getInt(1);
@@ -267,9 +278,9 @@
             </div>
             
                  <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                      
                         <span class="pull-right">
-                            <input value="Modificar" data-original-title="Editar este usuario" data-toggle="tooltip" type="submit" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></input>
+                            <input value="Modificar" data-original-title="Editar este usuario" data-toggle="tooltip" type="submit" class="btn btn-sm btn-warning"></input>
                             <% if (idTipoUsuario==3){
                             	int idEmpresa=0;
                             	rs = st.executeQuery("SELECT idEmpresa FROM responsableEmpresa WHERE idUsuario='"+idUsuario+"'");
@@ -277,7 +288,7 @@
                         			idEmpresa = rs.getInt(1);
                         			
                         		}
-                            		out.println("<a href='panelModificarEmpresa.jsp?a="+idEmpresa+"'><input value='Modificar empresa' data-original-title='Editar empresa' data-toggle='tooltip' type='buttom' class='btn btn-sm btn-warning'><i class='glyphicon glyphicon-edit'></i></input></a>");
+                            		out.println("<a href='panelModificarEmpresa.jsp?a="+idEmpresa+"'><input value='Modificar empresa' data-original-title='Editar empresa' data-toggle='tooltip' type='buttom' class='btn btn-sm btn-warning'></input></a>");
                             	}
                             %>
                             
@@ -291,5 +302,11 @@
       </div>
     </div>
     </form>
+    <script src=".././js/jquery.min.js"></script>
+<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js">
+
+</script>
+<script src=".././js/validatorModificarUsuario.js" type="text/javascript">
+</script>
 </body>
 </html>

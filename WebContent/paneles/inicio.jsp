@@ -1,8 +1,20 @@
 
 <%@ page import="entities.*" %>
-<% Usuario usuario = (Usuario)session.getAttribute("sesion");%>
 <%@ page language="java" import="packageConexion.*" %>
-<%@ page language="java" import="panel.Admin.*" %>
+<%@ page language="java" import="url.url.*" %>
+
+<%
+Usuario usuario = (Usuario)session.getAttribute("sesion");
+if (usuario == null){
+	out.println("<script>alert('Intentando acceder a un area restringida.')</script>");
+	out.println(url.url.redirigir(".././index.jsp"));
+}
+
+else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+	out.println("<script>alert('Intentando acceder a un area restringida.')</script>");
+	out.println(url.url.redirigir(".././index.jsp"));
+}
+%>
 
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
@@ -15,7 +27,6 @@
 	<title>Portada</title>
 	<link rel='shortcut icon' type='image/x-icon' href='.././favicon.ico' />
 	<link rel="stylesheet" href=".././css/jquery.fullpage.min.css">
-    <link rel="stylesheet" href=".././css/jquery.fullpage.min.css">
 </head>
 <body class="tema<%out.println(session.getAttribute("tema"));%>">
 
@@ -63,6 +74,8 @@
             <li><a href="#crearFamiliaProfesional">Crear fam.Prof<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
             <li><a href="#crearGrado">Crear grado<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
             <li><a href="#crearEspecializacion">Crear espec.<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
+            <li><a href="#modificarCentro">Modificar Centro<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pencil"></span></a></li>
+            
           </ul>
           </li> 
           
@@ -90,7 +103,7 @@
 	            <li class="enlace"><a id="6" href=".././tema.jsp?tema=6">Alto contraste<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-adjust"></span></a></li>
           </ul>
           </li>        
-        <li ><a href="#">Cerrar Sesi&oacuten<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-off"></span></a></li>
+        <li ><a href=".././cerrarSesion.jsp">Cerrar Sesi&oacuten<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-off"></span></a></li>
       	</ul>
       </ul>
       
@@ -190,6 +203,11 @@
                  		<%@include file=".././registroEspecializacion.jsp" %>
                 	</div>
             	</div>
+            	<div class="section" id="section11">
+                 	<div>
+                 		<%@include file=".././modificarCentro.jsp" %>
+                	</div>
+            	</div>
             	      
 </section>
     
@@ -204,7 +222,7 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#fullpage').fullpage({
-                    anchors: ['inicio','crearUsuario','crearTutor', 'modificarUsuario','crearEmpresa', 'crearResponsableEmpresa','modificarEmpresa','crearCentro', 'crearFamiliaProfesional','crearGrado','crearEspecializacion'],
+                    anchors: ['inicio','crearUsuario','crearTutor', 'modificarUsuario','crearEmpresa', 'crearResponsableEmpresa','modificarEmpresa','crearCentro', 'crearFamiliaProfesional','crearGrado','crearEspecializacion','modificarCentro'],
                     menu: '#menu',
                     loopTop: false,
                     loopBottom: false,
