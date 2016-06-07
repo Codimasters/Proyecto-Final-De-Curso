@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+<%
+
+//usuario = (Usuario)session.getAttribute("sesion");
+comprobar= false;
+if(usuario.getTipoUsuario().getIdTipoUsuario()!=5 ){
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=6){
+		out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando')</script>");
+		out.println(url.url.redirigir("index.jsp"));	
+	}
+	
+}
+%>
 <html>
 <head>
 <link href=".././Bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -7,7 +20,7 @@
 <body>
 <div class="row">
 	<div class="col-md-12">
-		<input type="text" class="form-control" id="buscador2" placeholder="Busqueda de centros" onkeyup='buscadorEmpresa(this.value)'></input>
+		<input type="text" class="form-control" id="buscador2" placeholder="Busqueda de centros" onkeyup='buscadorCentro(this.value)'></input>
 	</div>
 </div>
 
@@ -17,6 +30,9 @@
       <thead>
         <tr>
           <th>Nombre</th>
+          <th>Familia Profesionales</th>
+          <th>Grados</th>
+          <th>Especializaciones</th>
 
           <th style="width: 36px;"></th>
         </tr>
@@ -24,10 +40,30 @@
       <tbody id="datosCentro">
       	 <%
       	rs= st.executeQuery("SELECT * FROM centro");
+      	Statement st2 = conexion.conectar().createStatement();
   
       	 while(rs.next()){
+      		int idCentro2=rs.getInt(1);
+      		String nombreCentro2=rs.getString(2);
+      		int cuentaFamilia=0;
+      		ResultSet rs2=st2.executeQuery("select count(*) from relacionCF WHERE idCentro='"+idCentro2+"'");
+      		if(rs2.next()){
+      			cuentaFamilia=rs2.getInt(1);
+      		}
       		
- 			out.println("<div> <tr id='centro"+rs.getInt(1)+"'><td>"+rs.getString(2)+"<a value='"+rs.getInt(1)+"' href='./panelModificarCentro.jsp?a="+rs.getInt(1)+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-pencil'></span></a></td><td>  <a href='#modificarCentro' onclick='eliminarCentro(this.id)' id='"+rs.getInt(1)+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-remove'></span></a></td></tr>");
+      		int cuentaGrado = 0;
+      		rs2=st2.executeQuery("select count(*) from relacionFG WHERE idCentro='"+idCentro2+"'");
+      		if(rs2.next()){
+      			cuentaGrado=rs2.getInt(1);
+      		}
+      		
+      		int cuentaEspecializacion = 0;
+      		rs2=st2.executeQuery("select count(*) from relacionGE WHERE idCentro='"+idCentro2+"'");
+      		if(rs2.next()){
+      			cuentaEspecializacion=rs2.getInt(1);
+      		}
+      		
+ 			out.println("<div> <tr id='centro"+idCentro2+"'><td>"+nombreCentro2+"</td><td>"+cuentaFamilia+"</td><td>"+cuentaGrado+"</td><td>"+cuentaEspecializacion+"<a value='"+idCentro2+"' href='./panelModificarCentro.jsp?a="+idCentro2+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-pencil'></span></a></td><td>  <a href='#modificarCentro' onclick='eliminarCentro(this.id)' id='"+idCentro2+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-remove'></span></a></td></tr>");
       		
  		}
       	 %>
@@ -38,7 +74,7 @@
 <script>
 function eliminarCentro(str) { 
 
-		document.getElementById("empresa"+str).innerHTML="";
+		document.getElementById("centro"+str).innerHTML="";
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
@@ -52,11 +88,11 @@ function eliminarCentro(str) {
             }
         };
         
-        xmlhttp.open("GET",".././eliminarEmpresaAjax.jsp?q="+str,true);
+        xmlhttp.open("GET",".././eliminarCentroAjax.jsp?q="+str,true);
         xmlhttp.send();
     }
     
-function buscadorEmpresa(str) {
+function buscadorCentro(str) {
 
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -67,11 +103,11 @@ function buscadorEmpresa(str) {
         }
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("datosEmpresa").innerHTML = xmlhttp.responseText;
+                document.getElementById("datosCentro").innerHTML = xmlhttp.responseText;
             }
         };
         
-        xmlhttp.open("GET",".././obtenerDatosBuscadorEmpresaAjax.jsp?q="+str,true);
+        xmlhttp.open("GET",".././obtenerDatosBuscadorCentroAjax.jsp?q="+str,true);
         xmlhttp.send();
     }
 </script>

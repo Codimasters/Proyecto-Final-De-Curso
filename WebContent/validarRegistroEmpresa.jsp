@@ -19,4 +19,13 @@ String email = (String)request.getParameter("email");
 
 
 OperacionesBd.registrarEmpresa(nombre, acronimo, rubro,direccionFiscal,region,ciudad,telefono,email);
+
+Usuario usuario = (Usuario)session.getAttribute("sesion");
+if (usuario.getTipoUsuario().getIdTipoUsuario()==5){
+	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp#modificarUsuario');</script>");	
+}
+
+if (usuario.getTipoUsuario().getIdTipoUsuario()==3){
+	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicioResponsableEmpresa.jsp#modificarUsuario');</script>");	
+}
 %>

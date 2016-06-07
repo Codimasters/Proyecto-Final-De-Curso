@@ -2,16 +2,30 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="packageConexion.*"%>
 <%@page import="java.sql.*"%>
+ <%@ page import="entities.*" %>
+<%
+// usuario = (Usuario)session.getAttribute("sesion");
+
+if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=6){
+		out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroEspecializacion')</script>");
+		out.println(url.url.redirigir("index.jsp"));	
+	}
+	
+}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <style type="text/css">
     <%@include file="./Bootstrap/css/bootstrap.min.css"%>
+    <link href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" rel="stylesheet">
 </style>
-<title>Registrese Weyy</title>
+<title></title>
 </head>
 <body>
+
 	<script type="text/javascript" src="http://www.clubdesign.at/floatlabels.js"></script>
 
 <div class="container">
@@ -22,32 +36,56 @@
 			    		<center><h3 class="panel-title">Formulario de registro <small>de especializacion</small></h3><center>
 			 			</div>
 			 			<div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>>
-			    		<form id="formRegistro" role="form" method="post" action=".././validarRegistroCentro.jsp">
+			    		<form id="formRegistroEspecializacion" role="form" method="post" action=".././validarRegistroCentro.jsp">
 			    			<div class="row">
 			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
-			                <input type="text" name="nombreEspecializacion" id="nombre" class="form-control input-sm floatlabel" placeholder="Nombre de la familia profesional">
+			                <input type="text" name="nombreEspecializacion" id="nombre" class="form-control input-sm floatlabel" placeholder="Nombre de la especializacion">
 			    					</div>
 			    				</div>
 			    			</div>
-			    			<div class="col-xs-12 col-sm-12 col-md-12">
+			    			<div class="row">
+			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
 			                			<select name='nombreCentro' id='centroRegistro2' onchange="obtenerDatosRegistro2(this.value)">
-			                				<option value="0">Seleccione un centro</option>
+			                				<option value="0">-Seleccione un centro-</option>
 			    							<% 
-			    							rs=st.executeQuery("select * from centro");
-			    							while(rs.next()){
-			    								idCentro= rs.getInt(1);
-			    								nombreCentro= rs.getString(2);
-			    								out.println("<option value='"+idCentro+"'>"+nombreCentro+"</option>");
+			    							Conexion conexion4= new Conexion();
+						    				Statement st4= conexion4.conectar().createStatement();
+											int idCentro4;
+											String nombreCentro4;
+			    							ResultSet rs4=st4.executeQuery("select * from centro");
+			    							while(rs4.next()){
+			    								idCentro4= rs4.getInt(1);
+			    								nombreCentro4= rs4.getString(2);
+			    								out.println("<option value='"+idCentro4+"'>"+nombreCentro4+"</option>");
 			    							}
 			    							%>
 			    						</select>
 			    					</div>
-			    				
 			    				</div>
-			    				<div id="datosConsultasFamiliaProfesionalRegistro2"></div>
-			    				<div id="datosConsultasGradoRegistro2"></div>
+			    			</div>
+			    				<div class="row">
+			    				<div class="col-xs-12 col-sm-12 col-md-12">
+			    					<div class="form-group has-feedback has-success" id="groupFamilia2">
+			    				<select name='familiaProfesional'  id='familiaProfesional2' onchange='obtenerDatosFamiliaProfesionalRegistro2(this.value)'>
+			    					<option value='0'>-Seleccione una familia profesional-</option>
+			    					<option value='-1'>No existen familias profesionales</option>
+			    				</select>
+			    				</div>
+			    				</div>
+			    				</div>
+			    				
+			    				<div class='row'>
+			    					<div class='col-xs-12 col-sm-12 col-md-12'>
+			    						<div class='form-group' id="groupGrado2">
+			    							<select name='grado' id="datosConsultasGrado2">
+			    								<option value='0'>-Seleccione un grado-</option>
+			    								<option value='-1'>No existen grados</option>
+			    							</select>
+			    					</div>
+			    				</div>
+			    				</div>
 			    			
 			    			<input type="submit" value="Crear nueva especializacion" class="btn btn-info btn-block" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#70322b;'");}else{}%>>
 			    		
@@ -57,11 +95,21 @@
     		</div>
     	</div>
     </div>
-    
+    <script src=".././js/jquery.min.js"></script>
+<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js">
+
+</script>
+<script src=".././js/validatorEspecializacion.js" type="text/javascript"></script>    
     <script>
 function obtenerDatosRegistro2(str) {
-    if (str == "") {
-        document.getElementById("centroRegistro2").innerHTML = "";
+    if (str == 0) {
+    	document.getElementById("familiaProfesional2").selectedIndex = "0";
+       	document.getElementById("groupFamilia2").className+="form-group has-feedback has-error";
+       	document.getElementById("groupFamilia2").childNodes[2].className="form-control-feedback bv-no-label glyphicon glyphicon-remove";
+       	
+       	document.getElementById("datosConsultasGrado2").selectedIndex = "0";
+       	document.getElementById("groupGrado2").className+="form-group has-feedback has-error";
+       	document.getElementById("groupGrado2").childNodes[2].className="form-control-feedback bv-no-label glyphicon glyphicon-remove";
         return;
     } else { 
         if (window.XMLHttpRequest) {
@@ -73,30 +121,21 @@ function obtenerDatosRegistro2(str) {
         }
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("datosConsultasFamiliaProfesionalRegistro2").innerHTML = xmlhttp.responseText;
-                document.getElementById("familiaProfesional").setAttribute("onchange", "obtenerDatosFamiliaProfesionalRegistro2(this.value)")
+                document.getElementById("familiaProfesional2").innerHTML = xmlhttp.responseText;
+                document.getElementById("familiaProfesional2").setAttribute("onchange", "obtenerDatosFamiliaProfesionalRegistro2(this.value)")
             }
         };
         
         xmlhttp.open("GET",".././obtenerDatosRegistroFamiliaProfesionalAjax.jsp?q="+str,true);
         xmlhttp.send();
     }
-    if(document.getElementById("familiaProfesionalRegistro")){
-    	document.getElementById("familiaProfesionalRegistro").innerHTML="";
-    }
- 
-    if(document.getElementById("especializacionRegistro")){
-    	document.getElementById("datosConsultasEspecializacion").innerHTML="";
-    }
-    if(document.getElementById("centroRegistro2").value==0){
-    	document.getElementById("datosConsultasGradoRegistro2").innerHTML="";
-    }
-
 }
 
 function obtenerDatosFamiliaProfesionalRegistro2(str) {
-    if (str == "") {
-        document.getElementById("centroRegistro2").innerHTML = "";
+    if (str == 0) {
+    	document.getElementById("datosConsultasGrado2").selectedIndex = "0";
+       	document.getElementById("groupGrado2").className+="form-group has-feedback has-error";
+       	document.getElementById("groupGrado2").childNodes[2].className="form-control-feedback bv-no-label glyphicon glyphicon-remove";
         return;
     } else { 
         if (window.XMLHttpRequest) {
@@ -108,18 +147,13 @@ function obtenerDatosFamiliaProfesionalRegistro2(str) {
         }
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("datosConsultasGradoRegistro2").innerHTML = xmlhttp.responseText;
+                document.getElementById("datosConsultasGrado2").innerHTML = xmlhttp.responseText;
             }
         };
         
         xmlhttp.open("GET",".././obtenerDatosRegistroGradoAjax.jsp?q="+str,true);
         xmlhttp.send();
     }
-    if(document.getElementById("gradoRegistro2")){
-    	document.getElementById("datosConsultasGradoRegistro2").innerHTML="";
-    }
- 
-    
 }
 
 

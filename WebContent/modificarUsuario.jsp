@@ -1,5 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%
+/*
+usuario = (Usuario)session.getAttribute("sesion");
+*/
+boolean comprobar= false;
+
+if(usuario.getTipoUsuario().getIdTipoUsuario()!=5  ){
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=6){
+		if(usuario.getTipoUsuario().getIdTipoUsuario()!=1 ){
+			out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroCentro')</script>");
+			out.println(url.url.redirigir("index.jsp"));
+		}
+	}
+	
+	out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando modificarUsuario')</script>");
+	out.println(url.url.redirigir("index.jsp"));
+}
+
+%>
 <html>
 <head>
 <link href=".././Bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -26,11 +45,14 @@
       <tbody id="datos">
       	 <%
       	rs= st.executeQuery("SELECT * FROM datosPersonales");
-  
+
       	 while(rs.next()){
-      		if (rs.getInt(1) != usuario.getIdUsuario()){
- 				out.println("<div> <tr id='"+rs.getInt(1)+"'><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(6)+"</td><td><a value='"+rs.getInt(1)+"' href='./panelModificarUsuario.jsp?a="+rs.getInt(1)+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-pencil'></span></a></td><td>  <a href='#modificarUsuario' onclick='eliminarUsuario(this.id)' id='"+rs.getInt(1)+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-remove'></span></a></td></tr>");
-      		}
+      		 if (usuario!=null){
+      			if (rs.getInt(1) != usuario.getIdUsuario()){
+     				out.println("<div> <tr id='"+rs.getInt(1)+"'><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(6)+"</td><td><a value='"+rs.getInt(1)+"' href='./panelModificarUsuario.jsp?a="+rs.getInt(1)+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-pencil'></span></a></td><td>  <a href='#modificarUsuario' onclick='eliminarUsuario(this.id)' id='"+rs.getInt(1)+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-remove'></span></a></td></tr>");
+          		}	 
+      		 }
+      		
  		}
       	 %>
       </tbody>

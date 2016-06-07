@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 	<%
@@ -18,9 +18,7 @@
 		Conexion conexion= new Conexion();
 		Statement st= conexion.conectar().createStatement();
 		ResultSet rs= st.executeQuery("select idGrado,nombre from grado where idGrado in (select idGrado from relacionFG where idFamiliaProfesional='"+q+"') ");
-		
-		out.println("<div class='row'><div class='col-xs-12 col-sm-12 col-md-12'><div class='form-group'>");
-		out.println("<select name='grado'  id='grado' onchange='obtenerDatosGrado(this.value)'><option value='0'>Selecciona un grado</option>");
+		out.println("<option value='0'>Selecciona un grado</option>");
 		while(rs.next()){
 			int idGrado= rs.getInt(1);
 			String nombreGrado=rs.getString(2);

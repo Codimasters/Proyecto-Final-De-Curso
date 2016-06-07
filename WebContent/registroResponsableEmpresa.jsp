@@ -2,6 +2,14 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="packageConexion.*"%>
 <%@page import="java.sql.*"%>
+<%
+//usuario = (Usuario)session.getAttribute("sesion");
+if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+		out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroEspecializacion')</script>");
+		out.println(url.url.redirigir("index.jsp"));	
+	
+}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +17,8 @@
 <style type="text/css">
     <%@include file="./Bootstrap/css/bootstrap.min.css"%>
 </style>
-<title>Registrese Weyy</title>
+<title></title>
+<link href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" rel="stylesheet">
 </head>
 <body>
 	<script type="text/javascript" src="http://www.clubdesign.at/floatlabels.js"></script>
@@ -22,7 +31,7 @@
 			    		<center><h3 class="panel-title">Formulario de registro de responsable empresa<small><br>siempre responsables</small></h3><center>
 			 			</div>
 			 			<div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>>
-			    		<form id="formRegistro" role="form" method="post" action=".././validarRegistro.jsp">
+			    		<form id="formRegistroResponsableEmpresa" role="form" method="post" action=".././validarRegistro.jsp">
 			    			<div class="row">
 			    				<div class="col-xs-4 col-sm-4 col-md-4">
 			    					<div class="form-group">
@@ -102,5 +111,10 @@
     		</div>
     	</div>
     </div>
+        <script src=".././js/jquery.min.js"></script>
+<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js">
+
+</script>
+<script src=".././js/validatorResponsableEmpresa.js" type="text/javascript"></script>
     </body>
 </html>

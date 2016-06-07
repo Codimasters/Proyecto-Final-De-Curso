@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+<%
+// usuario = (Usuario)session.getAttribute("sesion");
+comprobar= false;
+if(usuario.getTipoUsuario().getIdTipoUsuario()!=5 ){
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=3){
+		out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando modificarEmpresa')</script>");
+		out.println(url.url.redirigir("index.jsp"));
+	}
+}
+
+%>
 <html>
 <head>
 <link href=".././Bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">

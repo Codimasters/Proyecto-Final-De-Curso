@@ -13,15 +13,21 @@ Usuario comprobacion= OperacionesBd.login(nombre,password);
 session.setAttribute("sesion", comprobacion);
 
 
-//System.out.println(comprobacion.getIdUsuario());
+
 
 if (comprobacion.getIdUsuario()!=null){
 	session.setAttribute("usuario", comprobacion);
 			//out.println(url.url.redirigir("usuario.jsp"));
 	if (comprobacion.getTipoUsuario().getIdTipoUsuario() == 5){
-		System.out.println(comprobacion.getIdUsuario());
 		session.setAttribute("temaNav", "navbar-inverse");
 		out.println(url.url.redirigir("./paneles/inicio.jsp"));
+
+	}
+	else if (comprobacion.getTipoUsuario().getIdTipoUsuario() == 2){
+		session.setAttribute("temaNav", "navbar-inverse");
+		out.println(url.url.redirigir("./paneles/inicioAlumno.jsp"));
+		Usuario usuario = (Usuario)session.getAttribute("sesion");
+		System.out.println("Por favor"+usuario.getAlumno().getCentro().getIdCentro());
 
 	}
 }

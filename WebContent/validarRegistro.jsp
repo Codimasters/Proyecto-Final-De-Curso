@@ -11,7 +11,7 @@ String apellido1 = (String)request.getParameter("apellido1");
 String apellido2 = (String)request.getParameter("apellido2");
 String dni = (String)request.getParameter("dni");
 String email = (String)request.getParameter("email");
-int telefono = Integer.parseInt(request.getParameter("telefono"));
+int telefono = (int)Integer.parseInt(request.getParameter("telefono"));
 String nombreCentro = (String)request.getParameter("nombreCentro");
 String especializacion = (String)request.getParameter("especializacion");
 System.out.println("IDEspecializacion mal: "+especializacion);
@@ -21,77 +21,90 @@ String username = (String)request.getParameter("username");
 String password = (String)request.getParameter("password");
 String tipoRegistro = (String)request.getParameter("tipoRegistro");
 String idEmpresa = "";
-
-
-//OperacionesBd.login(nombre,password);
-
-//out.println(url.url.redirigir("usuario.jsp"));
-/*out.println("Tu nombre: "+nombre);
-out.println("Tu primer apellido: "+apellido1);
-out.println("Tu segundo apellido: "+apellido2);
-out.println("Tu email: "+email);
-out.println("Tu telefono: "+telefono);
-out.println("Tu centro es: "+nombreCentro);
-out.println("Tu especializacion: "+especializacion);
-out.println("Tu familia profesional: "+familiaProfesional);
-out.println("Tu grado: "+grado);
-out.println("Tu nombre de usuario: "+username);
-out.println("Tu contrasenia: "+password);*/
-
+Usuario usuario = (Usuario)session.getAttribute("sesion");
 switch(Integer.parseInt(tipoRegistro)){
 	case 1:
 		String materia = (String)request.getParameter("materia");
 		OperacionesBd.registrarProfesor(nombre, apellido1, apellido2, email, telefono, nombreCentro, especializacion, familiaProfesional, grado, username, password, tipoRegistro, dni, materia,0);
+		
+		if (usuario!=null){
+			if (usuario.getTipoUsuario().getIdTipoUsuario()==5){
+				out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp#modificarUsuario');</script>");	
+			}
+			if (usuario.getTipoUsuario().getIdTipoUsuario()==6){
+				out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicioDirector.jsp#modificarUsuario');</script>");	
+			}
+			
+			
+		}
+		else{
+			out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicioProfesor.jsp');</script>");
+		}
+
 		break;
 	case 2:
 		OperacionesBd.registrarAlumno(nombre, apellido1, apellido2, email, telefono, nombreCentro, especializacion, familiaProfesional, grado, username, password, tipoRegistro, dni);
+		
+		if (usuario!=null){
+			if (usuario.getTipoUsuario().getIdTipoUsuario()==5){
+				out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp#modificarUsuario');</script>");	
+			}
+			if (usuario.getTipoUsuario().getIdTipoUsuario()==6){
+				out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicioDirector.jsp#modificarUsuario');</script>");	
+			}
+			
+			
+		}
+		else{
+			out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicioAlumno.jsp#modificarUsuario');</script>");
+		}
+
 		break;
 	case 3:
 		idEmpresa = (String)request.getParameter("idEmpresa");
 		OperacionesBd.registrarResponsableEmpresa(nombre,apellido1,apellido2,email,telefono,username,tipoRegistro,dni,idEmpresa);
+		
+		if (usuario!=null){
+			if (usuario.getTipoUsuario().getIdTipoUsuario()==5){
+				out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp#modificarUsuario');</script>");	
+			}
+			
+			
+		}
 		break;
 	case 4:
 		idEmpresa = (String)request.getParameter("idEmpresa");
 		OperacionesBd.registrarTutor(nombre, apellido1, apellido2,email, telefono, username,password,tipoRegistro,dni,idEmpresa);
+		
+		if (usuario!=null){
+			if (usuario.getTipoUsuario().getIdTipoUsuario()==5){
+				out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp#modificarUsuario');</script>");	
+			}
+			
+			if (usuario.getTipoUsuario().getIdTipoUsuario()==3){
+				out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicioResponsableEmpresa.jsp#modificarUsuario');</script>");	
+			}
+			
+			
+		}
+
 		break;
 	case 6:
 		materia = (String)request.getParameter("materia");
 		OperacionesBd.registrarProfesor(nombre, apellido1, apellido2, email, telefono, nombreCentro, especializacion, familiaProfesional, grado, username, password, tipoRegistro, dni, materia,1);
+		if (usuario!=null){
+			if (usuario.getTipoUsuario().getIdTipoUsuario()==5){
+				out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp#modificarUsuario');</script>");	
+			}
+			
+			
+		}
+
 		break;
 }
 
 
-Usuario usuario = (Usuario)session.getAttribute("sesion");
 
-if (usuario.getTipoUsuario().getIdTipoUsuario() == 5){
-	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp#modificarUsuario');</script>");
-}
 
-/*
-//-------------------------------------------------------------------------------
-//--------------------------------CONSULTAS--------------------------------------
-//-------------------------------------------------------------------------------
-//-CONSULTA PARA SACAR LOS NOMBRES Y APELLIDOS (PARA LA PARTE VISUAL DEL OPTION)-
-String consulta = jdbc_utils.jdbc_query("SELECT * FROM usuario", "idUsuario, idTipoUsuario");
-String[] consultaza = consulta.split(",[ ]*");
 
-//-CONSULTA PARA SACAR LOS ID'S (DATOS DEL VALUE DEL OPTION)-
-String datos = jdbc_utils.jdbc_query("SELECT * FROM usuario", "idUsuario, idTipoUsuario");
-String[] datazos = datos.split(",[ ]*");
-
-//-EL SELECT DINAMICO CON LOS DATOS DE LA BD-
-out.println("<select>");
-for (int i = 0; i < datazos.length; i++){
-    out.println("<option value="+datazos[i]+">"+consultaza[i]+"</option>");
-}
-out.println("</select>");
-
-out.println(consulta);
-*/
-//--------------------------------INSERTAR----------------------------------------------------------
-//jdbc_utils.jdbc_insert("INSERT INTO Usuarios values(NULL, 'Sergio', 'Lucena', 'Fernandez', 'IES Leopoldo Queipo', 'alumno')");
-
-//jdbc_utils.jdbc_mysql_close();
-
-//conect.consulta();
 %>

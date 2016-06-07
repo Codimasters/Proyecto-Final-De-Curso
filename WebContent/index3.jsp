@@ -79,93 +79,9 @@ background-color:#4f1c4a;
     font-size: 12px;
 }
 
-.fullscreen-bg {
-  opacity: 0.4;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  z-index: -100;
-  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 2s; /* Firefox < 16 */
-        -ms-animation: fadein 2s; /* Internet Explorer */
-         -o-animation: fadein 2s; /* Opera < 12.1 */
-            animation: fadein 2s;
-}
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Internet Explorer */
-@-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Opera < 12.1 */
-@-o-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-.fullscreen-bg__video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-@media (min-aspect-ratio: 16/9) {
-  .fullscreen-bg__video {
-    height: 300%;
-    top: -100%;
-  }
-}
-
-@media (max-aspect-ratio: 16/9) {
-  .fullscreen-bg__video {
-    width: 300%;
-    left: -100%;
-  }
-}
-
-@media (max-width: 767px) {
-  .fullscreen-bg {
-    background: url('../img/videoframe.jpg') center center / cover no-repeat;
-  }
-
-  .fullscreen-bg__video {
-    display: none;
-  }
-}
 </style>
 <body>
-<section id="fullpage">
 
-<div class="section" id="section0">
-<div class="fullscreen-bg">
-    <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
-        <source src="./video/portada.mp4" type="video/webm">
-        <source src="./video/portada.mp4" type="video/mp4">
-        <source src="./video/portada.mp4" type="video/ogg">
-    </video>
-</div>
 <div class="container" style="margin-top:30px">
 
 <div class="col-md-12">
@@ -183,19 +99,16 @@ background-color:#4f1c4a;
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Contrase&ntilde;a" name="password" type="password" value="">
                                 </div>
-                                <input type="submit" class="btn btn-sm btn-success" value="Inicia Sesion"></input>
-                                <a href="./faces/registro.jsp"><buttom type="buttom" class="btn btn-sm btn-success">Registrese</buttom></a>
+                                <center><input type="submit" class="btn btn-sm btn-success" value="Inicia Sesion"></input></center>
                             </fieldset>
                         </form>
                     </div>
                 </div>
     </div>
 </div>
-</div>
+<hr>
 
 </div>
-
-<div class="section" id="section0">
 
 <div class="container content">
     <div class="row">
@@ -215,16 +128,11 @@ background-color:#4f1c4a;
         </div>
     </div>
 </div>
-</div>
-</section>
 
 </body>
 
 </html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script src="../.././Bootstrap/js/bootstrap.js"></script>
-<script src=".././js/jquery.min.js"></script>
-        <script src=".././js/jquery-ui-min.js"></script>
-        <script src=".././js/jquery.fullpage.min.js"></script>
-        <script src=".././js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript">
+	<%@include file="./Bootstrap/js/bootstrap.min.js"%>
+</script>
 

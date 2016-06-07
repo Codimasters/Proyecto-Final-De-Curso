@@ -2,6 +2,17 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="packageConexion.*"%>
 <%@page import="java.sql.*"%>
+
+<%
+// usuario = (Usuario)session.getAttribute("sesion");
+
+if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+	
+	out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroCentro')</script>");
+	out.println(url.url.redirigir("index.jsp"));
+}
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +20,8 @@
 <style type="text/css">
     <%@include file="./Bootstrap/css/bootstrap.min.css"%>
 </style>
-<title>Registrese Weyy</title>
+<title></title>
+<link href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" rel="stylesheet">
 </head>
 <body>
 	<script type="text/javascript" src="http://www.clubdesign.at/floatlabels.js"></script>
@@ -22,7 +34,7 @@
 			    		<center><h3 class="panel-title">Formulario de registro <small>de centros</small></h3><center>
 			 			</div>
 			 			<div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>>
-			    		<form id="formRegistro" role="form" method="post" action=".././validarRegistroCentro.jsp">
+			    		<form id="formRegistroCentro" role="form" method="post" action=".././validarRegistroCentro.jsp">
 			    			<div class="row">
 			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
@@ -39,116 +51,10 @@
     		</div>
     	</div>
     </div>
-    
-    <script>
-function obtenerDatos(str) {
-    if (str == "") {
-        document.getElementById("centro").innerHTML = "";
-        return;
-    } else { 
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("datosConsultasFamiliaProfesional").innerHTML = xmlhttp.responseText;
-            }
-        };
-        
-        xmlhttp.open("GET",".././obtenerDatosRegistroFamiliaProfesionalAjax.jsp?q="+str,true);
-        xmlhttp.send();
-    }
-    if(document.getElementById("familiaProfesional")){
-    	document.getElementById("familiaProfesional").innerHTML="";
-    }
-    if(document.getElementById("grado")){
-    	document.getElementById("datosConsultasGrado").innerHTML="";
-    }
-    if(document.getElementById("especializacion")){
-    	document.getElementById("datosConsultasEspecializacion").innerHTML="";
-    }
-
-}
-
-function obtenerDatosFamiliaProfesional(str) {
-    if (str == "") {
-        document.getElementById("centro").innerHTML = "";
-        return;
-    } else { 
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("datosConsultasGrado").innerHTML = xmlhttp.responseText;
-            }
-        };
-        
-        xmlhttp.open("GET",".././obtenerDatosRegistroGradoAjax.jsp?q="+str,true);
-        xmlhttp.send();
-    }
-    if(document.getElementById("grado")){
-    	document.getElementById("datosConsultasGrado").innerHTML="";
-    }
-    if(document.getElementById("especializacion")){
-    	document.getElementById("datosConsultasEspecializacion").innerHTML="";
-    }
-    
-}
-
-function obtenerDatosGrado(str) {
-    if (str == "") {
-        document.getElementById("familiaProfesional").innerHTML = "";
-        return;
-    } else { 
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("datosConsultasEspecializacion").innerHTML = xmlhttp.responseText;
-            }
-        };
-        
-        xmlhttp.open("GET",".././obtenerDatosRegistroEspecializacionAjax.jsp?q="+str,true);
-        xmlhttp.send();
-    }
-    
-    if(document.getElementById("especializacion")){
-    	document.getElementById("datosConsultasEspecializacion").innerHTML="";
-    }
-}
-function obtenerTipoRegistro(str) {
-	switch(parseInt(str)){
-		case 1:
-			document.getElementById("materiasProfesor").innerHTML = "";
-			document.getElementById("materiasProfesor").innerHTML = '<div class="form-group"><input type="text" name="materia" id="materia" class="form-control input-sm" placeholder="Inserta la materia que impartes"></div>';
-			break;
-		case 2:
-			document.getElementById("materiasProfesor").innerHTML = "";
-			break;
-		case 6:
-			document.getElementById("materiasProfesor").innerHTML = "";
-			document.getElementById("materiasProfesor").innerHTML = '<div class="form-group"><input type="text" name="materia" id="materia" class="form-control input-sm" placeholder="Inserta la materia que impartes"></div>';
-			break;
-	}
-    
-}
-
-
+<script src=".././js/jquery.min.js"></script>
+<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js">
 
 </script>
+<script src=".././js/validatorCentro.js" type="text/javascript"></script>
 </body>
 </html>

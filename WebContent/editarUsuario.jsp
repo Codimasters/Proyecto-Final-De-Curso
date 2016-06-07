@@ -3,8 +3,94 @@
 <%@ page import="controladoresConexion.md5" %>
 <%@ page import="packageConexion.*" %>    
 <%@ page import="java.sql.*" %>
+<%@ page import="entities.*" %>
   <%
+ 
   String idUsuario = (String)request.getParameter("idUsuario");
+  Usuario usuario = (Usuario)session.getAttribute("sesion");
+  boolean comprobar1= false;
+  
+  int idCentro=0;
+  Conexion conexion= new Conexion();
+  Statement st= conexion.conectar().createStatement();
+
+  int idTipoUsuario=(int)Integer.parseInt(request.getParameter("idTipoUsuario"));
+  if (idTipoUsuario==1){
+		  ResultSet rs= st.executeQuery("SELECT idCentro FROM profesor WHERE idUsuario = '"+idUsuario+"'");
+			while(rs.next()){
+				idCentro=rs.getInt(1);
+	
+	 	 }
+	
+	  if(usuario.getTipoUsuario().getIdTipoUsuario()==5 || usuario.getIdUsuario()==(int)Integer.parseInt(idUsuario)){
+		 	comprobar1=true;
+	  
+  	 }
+	  else if(usuario.getProfesor()!=null){
+		  if(usuario.getTipoUsuario().getIdTipoUsuario()==6 && usuario.getProfesor().getCentro().getIdCentro()==idCentro){
+			  comprobar1=true;
+		  }
+	  }
+  }
+  else if(idTipoUsuario==2){
+	  ResultSet rs= st.executeQuery("SELECT idCentroAlumno FROM alumno WHERE idUsuario = '"+idUsuario+"'");
+		while(rs.next()){
+			idCentro=rs.getInt(1);
+
+ 	 }
+
+  		if(usuario.getTipoUsuario().getIdTipoUsuario()==5 || usuario.getIdUsuario()==(int)Integer.parseInt(idUsuario)){
+	 			comprobar1=true;
+  
+	 	}
+  		
+  		else if(usuario.getProfesor().getCentro()!=null){
+  			
+	  		if(usuario.getProfesor().getCentro().getIdCentro()==idCentro || usuario.getTipoUsuario().getIdTipoUsuario()==5){
+		  		comprobar1=true;
+		  		
+	  		}
+  		}	  
+  }
+  else if(idTipoUsuario==3){
+	  if(usuario.getTipoUsuario().getIdTipoUsuario()==5 || usuario.getIdUsuario()==(int)Integer.parseInt(idUsuario)){
+		  comprobar1=true;
+	  }
+  }
+  
+  else if(idTipoUsuario==4){
+	  ResultSet rs= st.executeQuery("SELECT idEmpresa FROM tutor WHERE idUsuario = '"+idUsuario+"'");
+	  int idEmpresa=0;
+		while(rs.next()){
+			idEmpresa=rs.getInt(1);
+
+	 }
+
+	  if(usuario.getTipoUsuario().getIdTipoUsuario()==5 || usuario.getIdUsuario()==(int)Integer.parseInt(idUsuario)){
+		  comprobar1=true;
+	  }
+	  else if(usuario.getTipoUsuario().getIdTipoUsuario()==3){
+		  if(usuario.getResponsableEmpresa().getEmpresa().getIdEmpresa()==idEmpresa){
+			  comprobar1=true;
+		  }
+	  }
+  }
+  else if(idTipoUsuario==5){
+	  if(usuario.getTipoUsuario().getIdTipoUsuario()==5){
+		  comprobar1=true;
+	  }
+  }
+  else if(idTipoUsuario==6){
+	  if(usuario.getTipoUsuario().getIdTipoUsuario()==5|| usuario.getIdUsuario()==(int)Integer.parseInt(idUsuario)){
+		  comprobar1=true;
+	  }
+  }
+  
+  
+  if(comprobar1==true){
+	  
+  
+ 
   String username = (String)request.getParameter("username");
   String password = (String)request.getParameter("password");
   String nombre = (String)request.getParameter("nombre");
@@ -14,12 +100,12 @@
   String email = (String)request.getParameter("email");
   String telefono = (String)request.getParameter("telefono");
 
-  int idTipoUsuario=(int)Integer.parseInt(request.getParameter("idTipoUsuario"));
+  
+  
+
  
   //                                    -TODOS LOS TIPOS DE USUARIO-
-  System.out.println(idTipoUsuario);
-  Conexion conexion= new Conexion();
-  Statement st= conexion.conectar().createStatement();
+
   
   if(password!=""){		  
 	  st.executeUpdate("UPDATE login SET username='"+username+"', password='"+md5.MD5(password)+"' WHERE idLogin='"+idUsuario+"'");  
@@ -87,6 +173,27 @@
 	  
   }
   
-  out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp#modificarUsuario');</script>");
+if(usuario.getTipoUsuario().getIdTipoUsuario()==1){
+	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicoProfesor.jsp#modificarUsuario');</script>");
+}
+else if(usuario.getTipoUsuario().getIdTipoUsuario()==2){
+	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicioAlumno.jsp#modificarUsuario');</script>");
+}
+else if(usuario.getTipoUsuario().getIdTipoUsuario()==3){
+	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicioResponsableEmpresa.jsp#modificarUsuario');</script>");
+}
+else if(usuario.getTipoUsuario().getIdTipoUsuario()==4){
+	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicioTutor.jsp#modificarUsuario');</script>");
+}
+else if(usuario.getTipoUsuario().getIdTipoUsuario()==5){
+	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp#modificarUsuario');</script>");
+}
+else if(usuario.getTipoUsuario().getIdTipoUsuario()==6){
+	out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicioDirector.jsp#modificarUsuario');</script>");
+}
+else{
+	out.println("<script>window.location.replace('/proyecto_final_curso/faces/');</script>");
+}
   
+  }
   %>

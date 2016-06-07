@@ -2,6 +2,17 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="packageConexion.*"%>
 <%@page import="java.sql.*"%>
+ <%@ page import="entities.*" %>
+<%
+// usuario = (Usuario)session.getAttribute("sesion");
+if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=6){
+		out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroEspecializacion')</script>");
+		out.println(url.url.redirigir("index.jsp"));	
+	}
+	
+}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +20,8 @@
 <style type="text/css">
     <%@include file="./Bootstrap/css/bootstrap.min.css"%>
 </style>
-<title>Registrese Weyy</title>
+<title></title>
+<link href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" rel="stylesheet">
 </head>
 <body>
 	<script type="text/javascript" src="http://www.clubdesign.at/floatlabels.js"></script>
@@ -22,7 +34,7 @@
 			    		<center><h3 class="panel-title">Formulario de registro <small>de familias profesionales</small></h3><center>
 			 			</div>
 			 			<div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>>
-			    		<form id="formRegistro" role="form" method="post" action=".././validarRegistroCentro.jsp">
+			    		<form id="formRegistroFamiliaProfesional" role="form" method="post" action=".././validarRegistroCentro.jsp">
 			    			<div class="row">
 			    				<div class="col-xs-12 col-sm-12 col-md-12">
 			    					<div class="form-group">
@@ -54,6 +66,10 @@
     		</div>
     	</div>
     </div>
-    
+<script src=".././js/jquery.min.js"></script>
+<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js">
+
+</script>
+<script src=".././js/validatorFamiliaProfesional.js" type="text/javascript"></script>    
 </body>
 </html>

@@ -156,9 +156,6 @@ background-color:#4f1c4a;
 }
 </style>
 <body>
-<section id="fullpage">
-
-<div class="section" id="section0">
 <div class="fullscreen-bg">
     <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
         <source src="./video/portada.mp4" type="video/webm">
@@ -183,19 +180,16 @@ background-color:#4f1c4a;
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Contrase&ntilde;a" name="password" type="password" value="">
                                 </div>
-                                <input type="submit" class="btn btn-sm btn-success" value="Inicia Sesion"></input>
-                                <a href="./faces/registro.jsp"><buttom type="buttom" class="btn btn-sm btn-success">Registrese</buttom></a>
+                                <center><input type="submit" class="btn btn-sm btn-success" value="Inicia Sesion"></input></center>
                             </fieldset>
                         </form>
                     </div>
                 </div>
     </div>
 </div>
-</div>
+<hr>
 
 </div>
-
-<div class="section" id="section0">
 
 <div class="container content">
     <div class="row">
@@ -215,16 +209,11 @@ background-color:#4f1c4a;
         </div>
     </div>
 </div>
-</div>
-</section>
 
 </body>
 
 </html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script src="../.././Bootstrap/js/bootstrap.js"></script>
-<script src=".././js/jquery.min.js"></script>
-        <script src=".././js/jquery-ui-min.js"></script>
-        <script src=".././js/jquery.fullpage.min.js"></script>
-        <script src=".././js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript">
+	<%@include file="./Bootstrap/js/bootstrap.min.js"%>
+</script>
 
