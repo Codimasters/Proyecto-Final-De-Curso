@@ -4,11 +4,18 @@
 <%
 // usuario = (Usuario)session.getAttribute("sesion");
 comprobar= false;
-if(usuario.getTipoUsuario().getIdTipoUsuario()!=5 ){
-	if(usuario.getTipoUsuario().getIdTipoUsuario()!=3){
-		out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando modificarEmpresa')</script>");
-		out.println(url.url.redirigir("index.jsp"));
+if(usuario!=null){
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=5 ){
+		if(usuario.getTipoUsuario().getIdTipoUsuario()!=3){
+			out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando modificarEmpresa')</script>");
+			out.println(url.url.redirigir("index.jsp"));
+		}
 	}
+	
+}
+else{
+	out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando modificarEmpresa')</script>");
+	out.println(url.url.redirigir("index.jsp"));
 }
 
 %>

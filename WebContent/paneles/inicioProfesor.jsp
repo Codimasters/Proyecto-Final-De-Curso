@@ -1,7 +1,7 @@
-
 <%@ page import="entities.*" %>
 <%@ page language="java" import="packageConexion.*" %>
 <%@ page language="java" import="url.url.*" %>
+<%@ page language="java" import="java.sql.*" %>
 
 <%
 Usuario usuario = (Usuario)session.getAttribute("sesion");
@@ -11,8 +11,11 @@ if (usuario == null){
 }
 
 else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
-	out.println("<script>alert('Intentando acceder a un area restringida.')</script>");
-	out.println(url.url.redirigir(".././index.jsp"));
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=1){
+		out.println("<script>alert('Intentando acceder a un area restringida.')</script>");
+		out.println(url.url.redirigir(".././index.jsp"));	
+	}
+	
 }
 %>
 
@@ -45,48 +48,27 @@ else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
     <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#inicio">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+        <li><a href="#registroUsuarios">Registrar alumno<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
         <li class="dropdown">
-          <a href="#inicio" class="dropdown-toggle" data-toggle="dropdown">Gestionar Usuarios <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
+          <a href="#inicio" class="dropdown-toggle" data-toggle="dropdown">Gesti&oacuten <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-search"></span></a>
           <ul class="dropdown-menu forAnimate" role="menu">
             
             
             <li class="dropdown-submenu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown-submenu">|Crear| <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a>
-          <ul class="dropdown-menu forAnimate" role="menu">
-			<!--                                    MENU DE CREAR USUARIOS (INSERTAR LINKS FULLPAGE )                          -->
-            <li><a href="#crearUsuario">&#183<u>Profesores/Alumnos</u></a></li>
-            <li><a href="#crearTutor">&#183<u>Tutores</u></a>
-            <li><a href="#crearResponsableEmpresa">&#183<u>Responsables</u></a>
-            <li><a href="#crearAdmin">&#183<u>Administradores</u></a>
-        
-          </ul></li>
-            <li class="divider"></li>
-			<!--                                    MENU DE MODIFICAR USUARIOS (INSERTAR LINKS FULLPAGE )                       -->
-            <li><a href="#modificarUsuario">|Modificar|<span></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pencil"></span></a></li>
-            <li class="divider"></li>
-
-           
-          </ul></li>
-          
-          <li class="dropdown" id="centros">
-         	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestionar Centros <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-education"></span></a>
-       	  <ul class="dropdown-menu forAnimate" role="menu">
-            <li><a href="#crearCentro">Crear centro<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
-            <li><a href="#crearFamiliaProfesional">Crear fam.Prof<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
-            <li><a href="#crearGrado">Crear grado<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
-            <li><a href="#crearEspecializacion">Crear espec.<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
-            <li><a href="#modificarCentro">Modificar Centro<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pencil"></span></a></li>
+       
+          <li id="alumnos">
+           	  
+            <li><a href="#editarAlumnos">Editar Alumnos<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>   
+         
+          </li> 
             
           </ul>
-          </li> 
-          
-          <li class="dropdown" id="gestionarEmpresa">
-         	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestionar Empresas <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plane"></span></a>
-       	  <ul class="dropdown-menu forAnimate" role="menu">
-            <li><a href="#crearEmpresa">|Crear|<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a></li>
-            <li><a href="#modificarEmpresa">|Modificar|<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pencil"></span></a></li>
+     
+           
+			<li class="active"><a href="#observarTusDatos">Observar tus datos<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon glyphicon-th-list"></span></a></li>
           </ul>
           </li> 
+          
         <ul class="nav navbar-nav navbar-bottom">         
         <li ><a href="./perfil.jsp">Ajustes<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a></li>
         
@@ -133,7 +115,7 @@ else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
                 </div>
                 
                 <div class="section" id="section1">
-                <h1><center>REGISTRAR NUEVO ALUMNO/PROFESOR</center></h1><hr>
+                <h1><center>REGISTRAR NUEVO ALUMNO</center></h1><hr>
                     <!--<div class="box">
                         <div class="box-content">
                             <h1 class="tag-title">BUENA GESTI&OacuteN</h1>
@@ -147,71 +129,101 @@ else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
                 </div>
                 
                 <div class="section" id="section2">
-                <h1><center>REGISTRAR NUEVO TUTOR</center></h1><hr>
-                    <!--<div class="box">
-                        <div class="box-content">
-                            <h1 class="tag-title">BUENA GESTI&OacuteN</h1>
-                            <hr />
-                            <p>Disfruta de una buena gesti&oacuten sobre la informaci&oacuten que nos facilitas. <br>&#161Nosotros nos encargamos de que no se pierda nada por el camino!</p>
-                            <br />
-                            <a href="ppc.html" class="btn btn-block btn-primary">Learn more</a>
-                        </div>
-                    </div>-->
-                 <%@include file=".././registroTutor.jsp" %>
-                </div>
+                <h1><center>GESTIONAR ALUMNOS A CARGO</center></h1><hr>
                 
-                <div class="section" id="section3">
-                <h1><center>REGISTRAR NUEVO ADMINISTRADOR</center></h1><hr>
-                 <%@include file=".././registroAdmin.jsp" %>
+                <div class="well" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='color:white; background:#272222; height: 75%;overflow: auto;'");}else{out.println("style='height: 75%;overflow: auto;'");}%>>
+			      <table class="table">
+			      <thead>
+			        <tr>
+			          <th>Nombre</th>
+			          <th>Apellido1</th>
+			          <th>Apellido2</th>
+			          <th style="width: 36px;"></th>
+			        </tr>
+			      </thead>
+			      <tbody id="datosProfe">
+			      	 <%
+			      	conexion= new Conexion();
+         			st= conexion.conectar().createStatement();
+		
+						System.out.println(usuario.getProfesor().getEspecializacion().size());
+						for(int i=0;i<usuario.getProfesor().getEspecializacion().size();i++){
+							System.out.println("Especializacion: "+usuario.getProfesor().getEspecializacion().get(i).getIdEspecializacion());
+							rs= st.executeQuery("SELECT idUsuario, nombre, apellido1, apellido2 from datosPersonales where idUsuario in (select idUsuario from alumno where idEspecializacion='"+usuario.getProfesor().getEspecializacion().get(i).getIdEspecializacion()+"') ");
+							while(rs.next()){
+								String nombreProfe= rs.getString(2);
+								String apellido1Profe= rs.getString(3);
+								String apellido2Profe= rs.getString(4);
+								out.println("<tr id='"+rs.getInt(1)+"'><td>"+nombreProfe+"</td><td>"+apellido1Profe+"</td><td>"+apellido2Profe+"</td><td><a value='"+rs.getInt(1)+"' href='./panelModificarUsuario.jsp?a="+rs.getInt(1)+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-pencil'></span></a></td><td>  <a href='#modificarUsuario' id='"+rs.getInt(1)+"' onclick='eliminarUsuario(this.id)' ><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-remove'></span></a></td></tr>");
+							}	
+						}
+						
+						
+			      	 %>
+			      </tbody>
+			    </table>
+			</div>
+			</div>
+			
+             <div class="section" id="section3">
+        <div class="well" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='color:white; background:#272222; height: 75%;overflow: auto;'");}else{out.println("style='height: 75%;overflow: auto;'");}%>>
+        <h1><center>TUTOR ASIGNADO</center></h1><hr>
+           
+			<table class="table">
+		      <thead>
+		        <tr>
+		          <th>Nombre</th>
+		          <th>Apellido 1</th>
+		          <th>Apellido 2</th>
+		          <th>DNI</th>
+		          <th style="width: 36px;"></th>
+		        </tr>
+		      </thead>
+		      <tbody id="datos">	
+		      		<%
+		      		System.out.println(usuario.getProfesor().getTutor().size());
+		      		for(int x=0; x<usuario.getProfesor().getTutor().size();x++){
+		      			System.out.println(x+"er Usuario"+usuario.getProfesor().getTutor().get(x).getIdUsuario());
+		      			rs= st.executeQuery("SELECT * FROM datosPersonales where idUsuario ='" +usuario.getProfesor().getTutor().get(x).getIdUsuario()+"'");
+				      	 while(rs.next()){
+				      		 if (usuario!=null){
+				      			if (rs.getInt(1) != usuario.getIdUsuario()){
+				     				out.println("<div> <tr id='"+rs.getInt(1)+"'><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(6)+"</td><td><a value='"+rs.getInt(1)+"' href='./panelModificarUsuario.jsp?a="+rs.getInt(1)+"'></td><td><a value='"+rs.getInt(1)+"' href='./panelModificarUsuario.jsp?a="+rs.getInt(1)+"'><span style='font-size:16px;' class='pull-right hidden-xs showopacity glyphicon glyphicon-pencil'></span></a></td></tr>");
+				          		}	 
+				      		 }
+				      		
+				 		}	
+		      		}
+		      		
+		              %>  
+            </tbody>
+    </table>
+    
+                  <h1><center>TU CENTRO </center></h1><hr>
+                   
+			<table class="table">
+		      <thead>
+		        <tr>
+		          <th>Nombre</th>
+		          <th style="width: 36px;"></th>
+		        </tr>
+		      </thead>
+		      <tbody id="datos">	
+		      		<%
+		      		
+		     		out.println("<div> <tr><td>"+usuario.getProfesor().getCentro().getNombreCentro()+"</td></tr>");
+		          			 
+		      		 
+		      		
+		 		
+		              %>  
+            </tbody>
+	    </table>           
                 </div>
+             </div>
+          </div>
+				
                 
-                <div class="section" id="section4">
-                <h1><center>EDITAR USUARIOS</center></h1><hr>
-                 <%@include file=".././modificarUsuario.jsp" %>
-                </div>
-                
-                <div class="section" id="section5">
-                 	<div  >
-                 		<%@include file=".././registroEmpresa.jsp" %>
-                	</div>
-            	</div> 
-            	
-            	<div class="section" id="section6">
-                 	<div  >
-                 		<%@include file=".././registroResponsableEmpresa.jsp" %>
-                	</div>
-            	</div>      
-            	<div class="section" id="section7">
-                 	<div  >
-                 		<%@include file=".././modificarEmpresa.jsp" %>
-                	</div>
-            	</div>
-            	<div class="section" id="section8">
-                 	<div  >
-                 		<%@include file=".././registroCentro.jsp" %>
-                	</div>
-            	</div>
-            	<div class="section" id="section9">
-                 	<div>
-                 		<%@include file=".././registroFamiliaProfesional.jsp" %>
-                	</div>
-            	</div>
-            	<div class="section" id="section10">
-                 	<div>
-                 		<%@include file=".././registroGrado.jsp" %>
-                	</div>
-            	</div>
-            	<div class="section" id="section11">
-                 	<div>
-                 		<%@include file=".././registroEspecializacion.jsp" %>
-                	</div>
-            	</div>
-            	<div class="section" id="section12">
-                 	<div>
-                 		<%@include file=".././modificarCentro.jsp" %>
-                	</div>
-            	</div>
-            	      
 </section>
     
 </body>
@@ -225,7 +237,7 @@ else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#fullpage').fullpage({
-                    anchors: ['inicio','crearUsuario','crearTutor','crearAdmin' , 'modificarUsuario','crearEmpresa', 'crearResponsableEmpresa','modificarEmpresa','crearCentro', 'crearFamiliaProfesional','crearGrado','crearEspecializacion','modificarCentro'],
+                    anchors: ['inicio', 'registroUsuarios', 'editarAlumnos', 'observarTusDatos'],
                     menu: '#menu',
                     loopTop: false,
                     loopBottom: false,
@@ -234,5 +246,26 @@ else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
                     scrollingSpeed: 600
                 });
             });
+</script>
+<script type="text/javascript">
+function eliminarUsuario(str) { 
+
+	document.getElementById(str).innerHTML="";
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		
+        }
+    };
+    
+    xmlhttp.open("GET",".././eliminarUsuarioAjax.jsp?q="+str,true);
+    xmlhttp.send();
+}
 </script>
 </html>

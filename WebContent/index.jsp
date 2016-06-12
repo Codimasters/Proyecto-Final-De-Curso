@@ -203,10 +203,17 @@ background-color:#4f1c4a;
             <div class="testimonials">
             	<div class="active item">
                   <blockquote><p>Un proyecto bastante bonito e intuitivo, han merecido la pena los paquetes de tabaco consumidos.</p></blockquote>
-                  <div class="carousel-info">
+                  <div class="carousel-info hidden-xs">
                     <img alt="" src="./imagenes/sergio.jpg" class="pull-left">
                     <div class="pull-left">
                       <span class="testimonials-name" style="color:#cdff8f">Sergio Lucena</span>
+                      <span class="testimonials-post" style="color:white;">Desarrollador de la App</span>
+                    </div>
+                  </div>
+                   <div class="carousel-info hidden-xs" style="position:absolute; top:90px; right:0px;">
+                    <img alt="" src="./imagenes/proyecto.jpg" class="pull-right">
+                    <div class="pull-right">
+                      <span class="testimonials-name" style="color:#cdff8f">Alejandro Oses</span>
                       <span class="testimonials-post" style="color:white;">Desarrollador de la App</span>
                     </div>
                   </div>

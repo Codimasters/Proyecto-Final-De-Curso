@@ -14,7 +14,7 @@ $('#formModificarUsuario').bootstrapValidator({
 					 message: 'El nombre es requerido'
 				 },
 				  regexp: {
-					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{3,36}$/,
+					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{2,36}$/,
 					 message: 'Debe empezar por mayuscula'
 				 }
 			 }
@@ -25,7 +25,7 @@ $('#formModificarUsuario').bootstrapValidator({
 					 message: 'El apellido es requerido'
 				 },
 				  regexp: {
-					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{3,36}$/,
+					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{2,36}$/,
 					 message: 'Debe empezar por mayuscula'
 				 }
 			 }
@@ -36,7 +36,7 @@ $('#formModificarUsuario').bootstrapValidator({
 					 message: 'El segundo apellido es requerido'
 				 },
 				  regexp: {
-					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{3,36}$/,
+					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{2,36}$/,
 					 message: 'Debe empezar por mayuscula'
 				 }
 			 }

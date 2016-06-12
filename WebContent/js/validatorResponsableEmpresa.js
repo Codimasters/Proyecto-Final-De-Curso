@@ -14,7 +14,7 @@ $('#formRegistroResponsableEmpresa').bootstrapValidator({
 					 message: 'El nombre es requerido'
 				 },
 				  regexp: {
-					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{3,36}$/,
+					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{2,36}$/,
 					 message: 'Debe empezar por mayuscula'
 				 }
 			 }
@@ -26,7 +26,7 @@ $('#formRegistroResponsableEmpresa').bootstrapValidator({
 					 message: 'El nombre es requerido'
 				 },
 				  regexp: {
-					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{3,36}$/,
+					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{2,36}$/,
 					 message: 'Debe empezar por mayuscula'
 				 }
 			 }
@@ -50,7 +50,7 @@ $('#formRegistroResponsableEmpresa').bootstrapValidator({
 					 message: 'El nombre es requerido'
 				 },
 				  regexp: {
-					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{3,36}$/,
+					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{2,36}$/,
 					 message: 'Debe empezar por mayuscula'
 				 }
 			 }
@@ -61,7 +61,7 @@ $('#formRegistroResponsableEmpresa').bootstrapValidator({
 					 message: 'El apellido es requerido'
 				 },
 				  regexp: {
-					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{3,36}$/,
+					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{2,36}$/,
 					 message: 'Debe empezar por mayuscula'
 				 }
 			 }
@@ -72,7 +72,7 @@ $('#formRegistroResponsableEmpresa').bootstrapValidator({
 					 message: 'Debe empezar por mayuscula'
 				 },
 				  regexp: {
-					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{3,36}$/,
+					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{2,36}$/,
 					 message: 'Debe empezar por mayuscula'
 				 }
 			 }
@@ -83,7 +83,7 @@ $('#formRegistroResponsableEmpresa').bootstrapValidator({
 					 message: 'Debe empezar por mayuscula'
 				 },
 				  regexp: {
-					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{3,36}$/,
+					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{2,36}$/,
 					 message: 'Debe empezar por mayuscula'
 				 }
 			 }
@@ -94,7 +94,7 @@ $('#formRegistroResponsableEmpresa').bootstrapValidator({
 					 message: 'Debe empezar por mayuscula'
 				 },
 				  regexp: {
-					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{3,36}$/,
+					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{2,36}$/,
 					 message: 'Debe empezar por mayuscula'
 				 }
 			 }
@@ -105,7 +105,7 @@ $('#formRegistroResponsableEmpresa').bootstrapValidator({
 					 message: 'Debe empezar por mayuscula'
 				 },
 				  regexp: {
-					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{3,36}$/,
+					 regexp:  /^[A-Z][a-zA-Z\u00E0-\u00FC-\s]{2,36}$/,
 					 message: 'Debe empezar por mayuscula'
 				 }
 			 }
@@ -147,7 +147,7 @@ $('#formRegistroResponsableEmpresa').bootstrapValidator({
 		 telefono: {
 			 validators: {
 				 regexp: {
-					 regexp: /^\d{8}$/ ,
+					 regexp: /^\d{9}$/ ,
 					 message: 'Por favor, introduzca un telefono v&aacutelido'
 				 },
 				 notEmpty: {

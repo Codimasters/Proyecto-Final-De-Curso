@@ -1,4 +1,4 @@
-$('#formModificarPerfil').bootstrapValidator({
+$('#formRegistroAdmin').bootstrapValidator({
 	 message: 'Este valor no es valido',
 	 feedbackIcons: {
 		 valid: 'glyphicon glyphicon-ok',
@@ -91,7 +91,7 @@ $('#formModificarPerfil').bootstrapValidator({
 		 username: {
 			 validators: {
 				 regexp: {
-					 regexp:  /^[a-zA-Z0-9_\u00E0-\u00FC-]{3,36}$/,
+					 regexp:  /^[a-zA-Z_\u00E0-\u00FC-]{3,36}$/,
 					 message: 'El nombre de usuario es incorrecto.'
 				 },
 				 notEmpty: {
@@ -102,6 +102,9 @@ $('#formModificarPerfil').bootstrapValidator({
 		 },
 		 password: {
 			 validators:{
+				 notEmpty: 	{
+					 	message: "La contrase&ntildea es requerida"
+				 },
 		 	 	 stringLength:{
 		 	 		 	min: 5,
 		 	 		 	message: "La contrase&ntildea debe de ser al menos de 5 caracteres"

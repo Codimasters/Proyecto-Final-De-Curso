@@ -74,12 +74,12 @@ else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
           <li class="divider"></li>
             
           </ul>
-          </li> 
      
            
-
+			<li class="active"><a href="#observarTusDatos">Observar tus datos<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon glyphicon-th-list"></span></a></li>
           </ul>
           </li> 
+          
         <ul class="nav navbar-nav navbar-bottom">         
         <li ><a href="./perfil.jsp">Ajustes<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a></li>
         
@@ -152,6 +152,7 @@ else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
 							String apellido2Profe= rs.getString(3);
 							out.println("<tr><td>"+nombreProfe+"</td><td>"+apellido1Profe+"</td><td>"+apellido2Profe+"</td></tr>");
 						}
+						
 			      	 %>
 			      </tbody>
 			    </table>
@@ -162,43 +163,6 @@ else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
              
                 
                 <div class="section" id="section2">
-                <h1><center>DATOS DE TU TUTOR</center></h1><hr>
-         			
-         			
-         			
-                <div class="well" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='color:white; background:#272222; height: 75%;overflow: auto;'");}else{out.println("style='height: 75%;overflow: auto;'");}%>>
-			      <table class="table">
-			      <thead>
-			        <tr>
-			          <th>Nombre</th>
-			          <th>Apellido1</th>
-			          <th>Apellido2</th>
-			          <th style="width: 36px;"></th>
-			        </tr>
-				      </thead>
-				      <tbody id="datosTutor">
-				      	 <%
-				     	st= conexion.conectar().createStatement();
-				 		
-				 		
-							
-							rs= st.executeQuery("SELECT nombre, apellido1, apellido2 from datosPersonales where idUsuario=(select idTutor from alumno where idUsuario='"+usuario.getAlumno().getCentro().getIdCentro()+"') ");
-							while(rs.next()){
-								String nombreTutor= rs.getString(1);
-								String apellido1Tutor= rs.getString(2);
-								String apellido2Tutor= rs.getString(3);
-								out.println("<tr><td>"+nombreTutor+"</td><td>"+apellido1Tutor+"</td><td>"+apellido2Tutor+"</td></tr>");
-							}
-							
-				      	 %>
-			      		</tbody>
-			   		 </table>
-					</div>
-       
-                </div>
-                
-                
-                <div class="section" id="section3">
                 <h1><center>DATOS DE ALUMNOS DE TU CENTRO</center></h1><hr>
          			
          			
@@ -232,7 +196,7 @@ else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
 					</div>
        
                 </div>
-                   <div class="section" id="section4">
+                   <div class="section" id="section3">
                 <h1><center>CENTROS DEL PROGRAMA</center></h1><hr>
          			
          			
@@ -309,6 +273,110 @@ else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
 					</div>
        
                 </div>
+ 	               
+                <div class="section" id="section5">
+                <div class="well" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='color:white; background:#272222; height: 75%;overflow: auto;'");}else{out.println("style='height: 75%;overflow: auto;'");}%>>
+                <h1><center>PROFESORES ASIGNADOS</center></h1><hr>
+                   
+			<table class="table">
+		      <thead>
+		        <tr>
+		          <th>Nombre</th>
+		          <th>Apellido 1</th>
+		          <th>Apellido 2</th>
+		          <th>DNI</th>
+		          <th style="width: 36px;"></th>
+		        </tr>
+		      </thead>
+		      <tbody id="datos">	
+		      		<%
+		      		rs= st.executeQuery("SELECT * FROM datosPersonales where idUsuario in (select idUsuario from relacionPE where idEspecializacion= '"+usuario.getAlumno().getEspecializacion().getIdEspecializacion()+"') ");
+		      		System.out.println("aqui"+usuario.getAlumno().getEspecializacion().getIdEspecializacion());
+		      	 while(rs.next()){
+		      		 if (usuario!=null){
+		      			if (rs.getInt(1) != usuario.getIdUsuario()){
+		     				out.println("<div> <tr id='"+rs.getInt(1)+"'><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(6)+"</td><td><a value='"+rs.getInt(1)+"' href='./panelModificarUsuario.jsp?a="+rs.getInt(1)+"'></td></tr>");
+		          		}	 
+		      		 }
+		      		
+		 		}
+		              %>  
+            </tbody>
+    </table>
+              
+                  <h1><center>TUTOR ASIGNADO</center></h1><hr>
+                   
+			<table class="table">
+		      <thead>
+		        <tr>
+		          <th>Nombre</th>
+		          <th>Apellido 1</th>
+		          <th>Apellido 2</th>
+		          <th>DNI</th>
+		          <th style="width: 36px;"></th>
+		        </tr>
+		      </thead>
+		      <tbody id="datos">	
+		      		<%
+		      		rs= st.executeQuery("SELECT * FROM datosPersonales where idUsuario ='" +usuario.getAlumno().getTutor().getIdUsuario()+"'");
+		      	 while(rs.next()){
+		      		 if (usuario!=null){
+		      			if (rs.getInt(1) != usuario.getIdUsuario()){
+		     				out.println("<div> <tr id='"+rs.getInt(1)+"'><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(6)+"</td><td><a value='"+rs.getInt(1)+"' href='./panelModificarUsuario.jsp?a="+rs.getInt(1)+"'></td></tr>");
+		          		}	 
+		      		 }
+		      		
+		 		}
+		              %>  
+            </tbody>
+    </table>
+                 
+                  <h1><center>TU CENTRO </center></h1><hr>
+                   
+			<table class="table">
+		      <thead>
+		        <tr>
+		          <th>Nombre</th>
+		          <th style="width: 36px;"></th>
+		        </tr>
+		      </thead>
+		      <tbody id="datos">	
+		      		<%
+		      		
+		     		out.println("<div> <tr><td>"+usuario.getAlumno().getCentro().getNombreCentro()+"</td></tr>");
+		          			 
+		      		 
+		      		
+		 		
+		              %>  
+            </tbody>
+    </table>
+     <h1><center>TU EMPRESA </center></h1><hr>
+    <table class="table">
+		      <thead>
+		        <tr>
+		          <th>Nombre</th>
+		       
+		          <th style="width: 36px;"></th>
+		        </tr>
+		      </thead>
+		      <tbody id="datos">	
+		      		<%
+		      		rs= st.executeQuery("SELECT * FROM empresa where idEmpresa =(select idEmpresa from tutor where idUsuario='"+usuario.getAlumno().getTutor().getIdUsuario()+"')");
+		      	 while(rs.next()){
+		      		 if (usuario!=null){
+		      			if (rs.getInt(1) != usuario.getIdUsuario()){
+		     				out.println("<div> <tr id='"+rs.getInt(1)+"'><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td><td>"+rs.getString(6)+"</td><td><a value='"+rs.getInt(1)+"' href='./panelModificarUsuario.jsp?a="+rs.getInt(1)+"'></td></tr>");
+		          		}	 
+		      		 }
+		      		
+		 		}
+		              %>  
+            </tbody>
+    </table>
+               
+                </div>
+                </div>
 				
                 
 </section>
@@ -324,7 +392,7 @@ else if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#fullpage').fullpage({
-                    anchors: ['inicio','observarProfesores','observarTutores', 'observarAlumnos','observarCentros', 'observarEmpresas'],
+                    anchors: ['inicio','observarProfesores','observarAlumnos','observarCentros', 'observarEmpresas', 'observarTusDatos'],
                     menu: '#menu',
                     loopTop: false,
                     loopBottom: false,

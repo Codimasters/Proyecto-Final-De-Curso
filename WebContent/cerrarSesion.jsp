@@ -4,5 +4,5 @@
     
    <%
    session.invalidate();
-   out.println(url.url.redirigir(".././index.jsp"));
+   out.println("<script>window.location.href='http://localhost:8080/proyecto_final_curso/faces/'</script>");
    %>

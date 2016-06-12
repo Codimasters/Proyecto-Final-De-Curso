@@ -10,11 +10,11 @@ $('#formRegistroFamiliaProfesional').bootstrapValidator({
 		 familiaProfesional: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El nombre del centro es requerido'
+					 message: 'El nombre de la familia profesional es requerido'
 				 },
 				  regexp: {
-					 regexp:  /^[a-zA-Z\u00E0-\u00FC\s]{3,36}$/,
-					 message: 'No es un nombre de centro v&aacutelido'
+					 regexp:  /^[a-zA-Z\u00E0-\u00FC\s]{2,36}$/,
+					 message: 'No es un nombre de Familia Profesional v&aacutelido'
 				 }
 			 }
 		 },

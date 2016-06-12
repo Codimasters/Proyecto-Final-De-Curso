@@ -31,10 +31,16 @@ if(comprobar==true){
 		
 		Conexion conexion= new Conexion();
 		Statement st= conexion.conectar().createStatement();
-		st.executeUpdate("delete from empresa where idEmpresa='"+cambio+"'");
-		st.executeUpdate("delete from login where idUsuario=(select idUsuario from responsableEmpresa where idEmpresa='"+cambio+"')");
+	
+		st.executeUpdate("delete from login where idLogin=(select idUsuario from responsableEmpresa where idEmpresa='"+cambio+"')");
 		st.executeUpdate("delete from relacionPT where idTutor=(select idUsuario from tutor where idEmpresa='"+cambio+"')");
-		st.executeUpdate("delete from login where idUsuario=(select idUsuario from tutor where idEmpresa='"+cambio+"')");
+		st.executeUpdate("delete from login where idLogin=(select idUsuario from tutor where idEmpresa='"+cambio+"')");
+		st.executeUpdate("delete from empresa where idEmpresa='"+cambio+"'");
+		
+		if(usuario.getTipoUsuario().getIdTipoUsuario()==3){
+			   session.invalidate();
+			   out.println("<script>window.location.href='http://localhost:8080/proyecto_final_curso/faces/'</script>");
+		}
 
 	}
 }

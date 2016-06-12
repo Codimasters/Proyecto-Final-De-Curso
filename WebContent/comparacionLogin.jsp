@@ -23,13 +23,37 @@ if (comprobacion.getIdUsuario()!=null){
 		out.println(url.url.redirigir("./paneles/inicio.jsp"));
 
 	}
+	else if (comprobacion.getTipoUsuario().getIdTipoUsuario() == 1){
+		session.setAttribute("temaNav", "navbar-inverse");
+		out.println(url.url.redirigir("./paneles/inicioProfesor.jsp"));
+		Usuario usuario = (Usuario)session.getAttribute("sesion");
+
+	}
 	else if (comprobacion.getTipoUsuario().getIdTipoUsuario() == 2){
 		session.setAttribute("temaNav", "navbar-inverse");
 		out.println(url.url.redirigir("./paneles/inicioAlumno.jsp"));
 		Usuario usuario = (Usuario)session.getAttribute("sesion");
-		System.out.println("Por favor"+usuario.getAlumno().getCentro().getIdCentro());
 
 	}
+	else if (comprobacion.getTipoUsuario().getIdTipoUsuario() == 3){
+		session.setAttribute("temaNav", "navbar-inverse");
+		out.println(url.url.redirigir("./paneles/inicioResponsableEmpresa.jsp"));
+		Usuario usuario = (Usuario)session.getAttribute("sesion");
+
+	}
+	else if (comprobacion.getTipoUsuario().getIdTipoUsuario() == 4){
+		session.setAttribute("temaNav", "navbar-inverse");
+		out.println(url.url.redirigir("./paneles/inicioTutor.jsp"));
+		Usuario usuario = (Usuario)session.getAttribute("sesion");
+
+	}
+	else if (comprobacion.getTipoUsuario().getIdTipoUsuario() == 6){
+		session.setAttribute("temaNav", "navbar-inverse");
+		out.println(url.url.redirigir("./paneles/inicioDirector.jsp"));
+		Usuario usuario = (Usuario)session.getAttribute("sesion");
+
+	}
+	
 }
 
 else{
@@ -38,33 +62,4 @@ else{
 }
 
 
-
-
-/*
-//-------------------------------------------------------------------------------
-//--------------------------------CONSULTAS--------------------------------------
-//-------------------------------------------------------------------------------
-//-CONSULTA PARA SACAR LOS NOMBRES Y APELLIDOS (PARA LA PARTE VISUAL DEL OPTION)-
-String consulta = jdbc_utils.jdbc_query("SELECT * FROM usuario", "idUsuario, idTipoUsuario");
-String[] consultaza = consulta.split(",[ ]*");
-
-//-CONSULTA PARA SACAR LOS ID'S (DATOS DEL VALUE DEL OPTION)-
-String datos = jdbc_utils.jdbc_query("SELECT * FROM usuario", "idUsuario, idTipoUsuario");
-String[] datazos = datos.split(",[ ]*");
-
-//-EL SELECT DINAMICO CON LOS DATOS DE LA BD-
-out.println("<select>");
-for (int i = 0; i < datazos.length; i++){
-    out.println("<option value="+datazos[i]+">"+consultaza[i]+"</option>");
-}
-out.println("</select>");
-
-out.println(consulta);
-*/
-//--------------------------------INSERTAR----------------------------------------------------------
-//jdbc_utils.jdbc_insert("INSERT INTO Usuarios values(NULL, 'Sergio', 'Lucena', 'Fernandez', 'IES Leopoldo Queipo', 'alumno')");
-
-//jdbc_utils.jdbc_mysql_close();
-
-//conect.consulta();
 %>
