@@ -5,11 +5,17 @@
  
 <%
 usuario = (Usuario)session.getAttribute("sesion");
-
-if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+if(usuario!=null){
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+		out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroEmpresa')</script>");
+		out.println(url.url.redirigir("index.jsp"));
+	}	
+}
+else{
 	out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroEmpresa')</script>");
 	out.println(url.url.redirigir("index.jsp"));
 }
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

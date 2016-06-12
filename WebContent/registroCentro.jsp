@@ -5,10 +5,16 @@
 
 <%
 // usuario = (Usuario)session.getAttribute("sesion");
-
-if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+if(usuario!=null){
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+		
+		out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroCentro')</script>");
+		out.println(url.url.redirigir("index.jsp"));
+	}
 	
-	out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroCentro')</script>");
+}
+else{
+	out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando modificarEmpresa')</script>");
 	out.println(url.url.redirigir("index.jsp"));
 }
 

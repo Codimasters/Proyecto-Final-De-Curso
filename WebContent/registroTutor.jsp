@@ -5,12 +5,20 @@
 <%@page import="entities.*" %>
 <%
 usuario = (Usuario)session.getAttribute("sesion");
-if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
-	if(usuario.getTipoUsuario().getIdTipoUsuario()!=3){
-		out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroEspecializacion')</script>");
-		out.println(url.url.redirigir("index.jsp"));	
+if(usuario!=null){
+	if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
+		if(usuario.getTipoUsuario().getIdTipoUsuario()!=3){
+			out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroEspecializacion')</script>");
+			out.println(url.url.redirigir("index.jsp"));	
+		}
+		
 	}
 	
+}
+else{
+	out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroEspecializacion')</script>");
+	out.println(url.url.redirigir(".././index.jsp"));	
+
 }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -76,12 +84,16 @@ if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
 						    				Statement st= conexion.conectar().createStatement();*/
 						    				int idEmpresa;
 											String nombre;
-											/*ResultSet*/ rs=st.executeQuery("select idEmpresa, nombre from empresa");
+											/*ResultSet*/ rs=st.executeQuery("select idEmpresa, nombre from empresa WHERE idEmpresa IN (SELECT idEmpresa FROM responsableEmpresa)");
+											if (usuario.getTipoUsuario().getIdTipoUsuario()==3){
+												rs=st.executeQuery("select idEmpresa, nombre from empresa WHERE idEmpresa='"+usuario.getResponsableEmpresa().getEmpresa().getIdEmpresa()+"'");
+											}
 			    							while(rs.next()){
 			    								idEmpresa= rs.getInt(1);
 			    								nombre= rs.getString(2);
 			    								out.println("<option value='"+idEmpresa+"'>"+nombre+"</option>");
 			    							}
+			    							
 			    							%>
 			    						</select>
 			    					</div>

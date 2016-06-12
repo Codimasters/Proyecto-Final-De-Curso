@@ -3,6 +3,7 @@
 <%@page import="packageConexion.*"%>
 <%@page import="java.sql.*"%>
 <%@page import="entities.*"%>
+<%usuario = (Usuario)session.getAttribute("sesion");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -287,9 +288,20 @@ background-color:#4f1c4a;
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
 			    						<select id="tipoRegistro" name='tipoRegistro' onchange='obtenerTipoRegistro(this.value)'>
-			    							<option value="2">alumno</option>
-			    							<option value="1">profesor</option>
-			    							<option value="6">director</option>
+			    							<%
+			    								if (usuario.getTipoUsuario().getIdTipoUsuario()==6){
+			    									
+			    									out.println("<option value='2'>alumno</option><option value='1'>profesor</option>");
+			    								}
+			    								else if (usuario.getTipoUsuario().getIdTipoUsuario()==1){
+			    									
+			    									out.println("<option value='2'>alumno</option>");
+			    								}
+												else {
+			    									
+			    									out.println("<option value='2'>alumno</option><option value='1'>profesor</option><option value='6'>director</option>");
+			    								}
+			    							%>
 			    						</select>
 			    					</div>
 			    				</div>

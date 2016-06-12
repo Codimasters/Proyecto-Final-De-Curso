@@ -2,21 +2,22 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="packageConexion.*"%>
 <%@page import="java.sql.*"%>
+<%@page import="entities.*" %>
 <%
-//usuario = (Usuario)session.getAttribute("sesion");
+usuario = (Usuario)session.getAttribute("sesion");
 if(usuario!=null){
 	if(usuario.getTipoUsuario().getIdTipoUsuario()!=5){
-		out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroEspecializacion')</script>");
-		out.println(url.url.redirigir("index.jsp"));	
+			out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroEspecializacion')</script>");
+			out.println(url.url.redirigir("index.jsp"));	
+		
+	}
 	
-	}	
 }
 else{
 	out.println("<script>alert('Se ha intentado acceder a una zona restringida, redireccionando registroEspecializacion')</script>");
-	out.println(url.url.redirigir("index.jsp"));	
+	out.println(url.url.redirigir(".././index.jsp"));	
 
 }
-
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -25,7 +26,6 @@ else{
 <style type="text/css">
     <%@include file="./Bootstrap/css/bootstrap.min.css"%>
 </style>
-<title></title>
 <link href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" rel="stylesheet">
 </head>
 <body>
@@ -36,10 +36,10 @@ else{
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
         		<div class="panel-heading" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#7a2b24;color:white;'");}else{}%>>
-			    		<center><h3 class="panel-title">Formulario de registro de responsable empresa<small><br>siempre responsables</small></h3><center>
+			    		<center><h3 class="panel-title">Formulario de registro de administradores<small><br>administrando-ando</small></h3><center>
 			 			</div>
 			 			<div class="panel-body" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#272222;'");}else{}%>>
-			    		<form id="formRegistroResponsableEmpresa" role="form" method="post" action=".././validarRegistro.jsp">
+			    		<form id="formRegistroAdmin" role="form" method="post" action=".././validarRegistro.jsp">
 			    			<div class="row">
 			    				<div class="col-xs-4 col-sm-4 col-md-4">
 			    					<div class="form-group">
@@ -71,26 +71,6 @@ else{
 			                			<input type="text" name="telefono" id="telefono" class="form-control input-sm floatlabel" placeholder="Telefono">
 			    					</div>
 			    				</div>
-			    			</div>
-			    			<div class="row">
-			    				<div class="col-xs-12 col-sm-12 col-md-12">
-			    					<div class="form-group">
-			                			<select name='idEmpresa' id='idEmpresa' onchange="obtenerDatos(this.value)">
-			                				<option value="0">Seleccione una empresa</option>
-			    							<%
-			    						/*	Conexion conexion= new Conexion();
-						    				Statement st= conexion.conectar().createStatement();*/
-						    				
-											/*ResultSet*/ rs=st.executeQuery("select idEmpresa, nombre from empresa WHERE idEmpresa NOT IN (SELECT idEmpresa FROM responsableEmpresa)");
-			    							while(rs.next()){
-			    								idEmpresa= rs.getInt(1);
-			    								nombre= rs.getString(2);
-			    								out.println("<option value='"+idEmpresa+"'>"+nombre+"</option>");
-			    							}
-			    							%>
-			    						</select>
-			    					</div>
-			    				</div>
 			    			</div>	
 	
 			    			<div class="row">
@@ -104,14 +84,13 @@ else{
 			    			<div class="row">
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
-			    						<select id="tipoRegistro" name='tipoRegistro' onchange='obtenerTipoRegistro(this.value)' hidden>
-			    							<option value="3">Responsable Empresa</option>
-			    						</select>
+			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
 			    					</div>
 			    				</div>
+			    				
 			    			</div>
 			    			
-			    			<input type="submit" value="Registrar Usuario" class="btn btn-info btn-block" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#70322b;'");}else{}%>>
+			    			<input type="submit" value="Registrar Adminsitrador" class="btn btn-info btn-block" <% if ((String)session.getAttribute("temaCaja")== "box-inverse"){out.println("style='background:#70322b;'");}else{}%>>
 			    		
 			    		</form>
 			    	</div>
@@ -119,10 +98,10 @@ else{
     		</div>
     	</div>
     </div>
-        <script src=".././js/jquery.min.js"></script>
+    </body>
+    <script src=".././js/jquery.min.js"></script>
 <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js">
 
 </script>
-<script src=".././js/validatorResponsableEmpresa.js" type="text/javascript"></script>
-    </body>
+<script src=".././js/validatorAdmin.js" type="text/javascript"></script>
 </html>

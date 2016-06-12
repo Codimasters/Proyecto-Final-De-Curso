@@ -19,7 +19,14 @@ String familiaProfesional = (String)request.getParameter("familiaProfesional");
 String grado = (String)request.getParameter("grado");
 String username = (String)request.getParameter("username");
 String password = (String)request.getParameter("password");
-String tipoRegistro = (String)request.getParameter("tipoRegistro");
+String tipoRegistro = (String)request.getParameter("tipoRegistro");	
+
+if(tipoRegistro==null){
+	tipoRegistro="5";	
+}
+System.out.println(tipoRegistro);
+
+
 String idEmpresa = "";
 Usuario usuario = (Usuario)session.getAttribute("sesion");
 switch(Integer.parseInt(tipoRegistro)){
@@ -89,6 +96,19 @@ switch(Integer.parseInt(tipoRegistro)){
 		}
 
 		break;
+	case 5:
+		OperacionesBd.registrarAdministrador( nombre, apellido1, apellido2, email, telefono, username, password, dni);
+		if (usuario!=null){
+			if (usuario.getTipoUsuario().getIdTipoUsuario()==5){
+				out.println("<script>window.location.replace('/proyecto_final_curso/faces/paneles/inicio.jsp#modificarUsuario');</script>");	
+			}
+			
+			
+		}
+
+		break;
+
+		
 	case 6:
 		materia = (String)request.getParameter("materia");
 		OperacionesBd.registrarProfesor(nombre, apellido1, apellido2, email, telefono, nombreCentro, especializacion, familiaProfesional, grado, username, password, tipoRegistro, dni, materia,1);
@@ -101,6 +121,7 @@ switch(Integer.parseInt(tipoRegistro)){
 		}
 
 		break;
+	
 }
 
 
