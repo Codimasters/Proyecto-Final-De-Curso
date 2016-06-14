@@ -20,3 +20,10 @@ El proyecto ha sido realizado por Codimasters, comprendido por Alejandro Oses Ar
 *---------------*
 30-5-2016: V0.35
 *---------------*
+
+*---------------*
+16-6-2016: V1.0
+*---------------*
+
+Código Fuente:
+https://www.dropbox.com/s/0hg39ipu7vttlx1/proyecto_final_curso.zip?dl=1
