@@ -1,0 +1,10 @@
+127.0.0.1 - - [03/Jun/2016:17:53:18 +0100] "GET /proyecto_final_curso/faces/ HTTP/1.1" 200 159758
+127.0.0.1 - - [03/Jun/2016:17:53:24 +0100] "POST /proyecto_final_curso/faces/comparacionLogin.jsp HTTP/1.1" 200 84
+127.0.0.1 - - [03/Jun/2016:17:53:24 +0100] "GET /proyecto_final_curso/faces/paneles/inicio.jsp HTTP/1.1" 200 399382
+127.0.0.1 - - [03/Jun/2016:17:53:24 +0100] "GET /proyecto_final_curso/faces/js/jquery-ui-min.js HTTP/1.1" 404 1039
+127.0.0.1 - - [03/Jun/2016:17:53:25 +0100] "GET /proyecto_final_curso/faces/js/jquery-ui-min.js HTTP/1.1" 404 1039
+127.0.0.1 - - [03/Jun/2016:17:53:28 +0100] "GET /proyecto_final_curso/faces/tema.jsp?tema=3 HTTP/1.1" 200 106
+127.0.0.1 - - [03/Jun/2016:17:53:29 +0100] "GET /proyecto_final_curso/faces/paneles/inicio.jsp HTTP/1.1" 200 399615
+127.0.0.1 - - [03/Jun/2016:17:53:29 +0100] "GET /proyecto_final_curso/faces/js/jquery-ui-min.js HTTP/1.1" 404 1039
+127.0.0.1 - - [03/Jun/2016:17:53:29 +0100] "GET /proyecto_final_curso/faces/imagenes/fondos/fondo2.jpg HTTP/1.1" 200 68414
+127.0.0.1 - - [03/Jun/2016:17:53:29 +0100] "GET /proyecto_final_curso/faces/js/jquery-ui-min.js HTTP/1.1" 404 1039

@@ -1,0 +1,102 @@
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Server version:        Apache Tomcat/7.0.69
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Server built:          Apr 11 2016 07:57:09 UTC
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Server number:         7.0.69.0
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: OS Name:               Windows 10
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: OS Version:            10.0
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Architecture:          x86
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Java Home:             C:\Program Files (x86)\Java\jdk1.8.0_92\jre
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: JVM Version:           1.8.0_92-b14
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: JVM Vendor:            Oracle Corporation
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: CATALINA_BASE:         C:\Users\seluf\Desktop\apache-tomcat-7.0.69
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: CATALINA_HOME:         C:\Users\seluf\Desktop\apache-tomcat-7.0.69
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Command line argument: -Djava.util.logging.config.file=C:\Users\seluf\Desktop\apache-tomcat-7.0.69\conf\logging.properties
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Command line argument: -Djava.endorsed.dirs=C:\Users\seluf\Desktop\apache-tomcat-7.0.69\endorsed
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Command line argument: -Dcatalina.base=C:\Users\seluf\Desktop\apache-tomcat-7.0.69
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Command line argument: -Dcatalina.home=C:\Users\seluf\Desktop\apache-tomcat-7.0.69
+jun 03, 2016 5:53:04 PM org.apache.catalina.startup.VersionLoggerListener log
+INFORMACIÓN: Command line argument: -Djava.io.tmpdir=C:\Users\seluf\Desktop\apache-tomcat-7.0.69\temp
+jun 03, 2016 5:53:04 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFORMACIÓN: Cargada la biblioteca nativa APR de Apache Tomcat 1.1.33 con la versión APR 1.5.1.
+jun 03, 2016 5:53:04 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFORMACIÓN: Capacidades APR: IPv6 [true], enviar fichero [true], aceptar filtros [false], aleatorio [true].
+jun 03, 2016 5:53:04 PM org.apache.catalina.core.AprLifecycleListener initializeSSL
+INFORMACIÓN: OpenSSL inicializado correctamente (OpenSSL 1.0.1m 19 Mar 2015)
+jun 03, 2016 5:53:05 PM org.apache.coyote.AbstractProtocol init
+INFORMACIÓN: Initializing ProtocolHandler ["http-apr-8080"]
+jun 03, 2016 5:53:05 PM org.apache.coyote.AbstractProtocol init
+INFORMACIÓN: Initializing ProtocolHandler ["ajp-apr-8009"]
+jun 03, 2016 5:53:05 PM org.apache.catalina.startup.Catalina load
+INFORMACIÓN: Initialization processed in 1674 ms
+jun 03, 2016 5:53:05 PM org.apache.catalina.core.StandardService startInternal
+INFORMACIÓN: Arrancando servicio Catalina
+jun 03, 2016 5:53:05 PM org.apache.catalina.core.StandardEngine startInternal
+INFORMACIÓN: Starting Servlet Engine: Apache Tomcat/7.0.69
+jun 03, 2016 5:53:05 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Despliegue del directorio C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\docs de la aplicación web
+jun 03, 2016 5:53:06 PM org.apache.catalina.startup.TldConfig execute
+INFORMACIÓN: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+jun 03, 2016 5:53:06 PM org.apache.catalina.util.SessionIdGeneratorBase createSecureRandom
+INFORMACIÓN: Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [182] milliseconds.
+jun 03, 2016 5:53:06 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Deployment of web application directory C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\docs has finished in 681 ms
+jun 03, 2016 5:53:06 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Despliegue del directorio C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\examples de la aplicación web
+jun 03, 2016 5:53:08 PM org.apache.catalina.startup.TldConfig execute
+INFORMACIÓN: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+jun 03, 2016 5:53:08 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Deployment of web application directory C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\examples has finished in 1.877 ms
+jun 03, 2016 5:53:08 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Despliegue del directorio C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\host-manager de la aplicación web
+jun 03, 2016 5:53:08 PM org.apache.catalina.startup.TldConfig execute
+INFORMACIÓN: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+jun 03, 2016 5:53:08 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Deployment of web application directory C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\host-manager has finished in 154 ms
+jun 03, 2016 5:53:08 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Despliegue del directorio C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\manager de la aplicación web
+jun 03, 2016 5:53:08 PM org.apache.catalina.startup.TldConfig execute
+INFORMACIÓN: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+jun 03, 2016 5:53:08 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Deployment of web application directory C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\manager has finished in 300 ms
+jun 03, 2016 5:53:08 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Despliegue del directorio C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\proyecto_final_curso de la aplicación web
+jun 03, 2016 5:53:09 PM org.apache.catalina.startup.TldConfig execute
+INFORMACIÓN: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+jun 03, 2016 5:53:09 PM org.apache.catalina.core.StandardContext addApplicationListener
+INFORMACIÓN: El escuchador "com.sun.faces.config.ConfigureListener" ya está configurado para este contexto. La definición duplicada ha sido ignorada.
+jun 03, 2016 5:53:09 PM com.sun.faces.config.ConfigureListener contextInitialized
+INFORMACIÓN: Inicializando Mojarra 2.2.0 ( 20130502-2118 https://svn.java.net/svn/mojarra~svn/tags/2.2.0@11930) para el contexto '/proyecto_final_curso'
+jun 03, 2016 5:53:09 PM com.sun.faces.spi.InjectionProviderFactory createInstance
+INFORMACIÓN: JSF1048: hay presentes anotaciones PostConstruct/PreDestroy.  Los métodos de beans administrados marcados con estas anotaciones procesarán dichas anotaciones.
+jun 03, 2016 5:53:10 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Deployment of web application directory C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\proyecto_final_curso has finished in 1.932 ms
+jun 03, 2016 5:53:10 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Despliegue del directorio C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\ROOT de la aplicación web
+jun 03, 2016 5:53:10 PM org.apache.catalina.startup.TldConfig execute
+INFORMACIÓN: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+jun 03, 2016 5:53:10 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFORMACIÓN: Deployment of web application directory C:\Users\seluf\Desktop\apache-tomcat-7.0.69\webapps\ROOT has finished in 131 ms
+jun 03, 2016 5:53:10 PM org.apache.coyote.AbstractProtocol start
+INFORMACIÓN: Starting ProtocolHandler ["http-apr-8080"]
+jun 03, 2016 5:53:10 PM org.apache.coyote.AbstractProtocol start
+INFORMACIÓN: Starting ProtocolHandler ["ajp-apr-8009"]
+jun 03, 2016 5:53:10 PM org.apache.catalina.startup.Catalina start
+INFORMACIÓN: Server startup in 5258 ms
